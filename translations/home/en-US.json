@@ -1,0 +1,24 @@
+{
+  "home": {
+    "welcomePage": {
+      "heading": " How to start?",
+      "subHeading1": "You've officially spun up your very first CD² CLI Tool based Scaffolding Project :-)",
+      "subHeading2": "You've got one more decision to make: what do you want to do next? We'd suggest one of the following to help you get going:",
+      "labels": {
+        "quickStart": "Quick Start",
+        "cdCliGuide": "CD² CLI Tool Guide",
+        "coreFeatures": "Core Features Included Out of Box",
+        "reusableComponents": "Reusable Components",
+        "testCoverage": "Test Coverage"
+      },
+      "descriptions": {
+        "quickStart": "A quick introduction to how CD² CLI Tool works. Learn about defining your first route, writing a UI component and deploying your application.",
+        "cdCliGuide": "This is our more thorough, hands-on intro to CD² CLI Tool. A quick crash course in CD² CLI Tool philosophy, background and some in-depth discussion of how things works (and why they work they way they do).",
+        "reusableComponents": " CD² CLI Tool comes up with reusable React components for faster and easier web development. These components are integrated with Storybook (tool for UI development).",
+        "testCoverage": "CD² CLI Tool comes up with built-in Jest testing frameworks and also covers unit testcases for some common features."
+      },
+      "disclaimer": "This is a beta version, so if you find any difficulty in using it or running into any issue, please feel free to reach out! We are here to help! For any feedback, please reach out to cd-cli-support@globallogic.com",
+      "removeWelcome": "To remove this welcome message, remove the <WelcomePage /> component from your components/Home/Home.jsx file. You'll see this page update soon after!"
+    }
+  }
+}

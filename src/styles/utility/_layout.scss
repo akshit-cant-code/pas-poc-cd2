@@ -1,0 +1,43 @@
+//
+// Layout
+// --------------------------------------------------
+// Specific to project -- ex. home page wrapper, contact wrapper, blog wrapper etc
+//
+.app-container {
+  min-height: 100vh;
+  position: relative;
+
+  @include theme {
+    background-color: variable("background-color");
+    
+  }
+}
+
+html,
+body {
+  margin: 0;
+}
+
+
+
+code {
+  font-family: "source-code-pro, Menlo, Monaco, Consolas", "Courier New",
+    monospace;
+}
+
+.center {
+  text-align: center;
+  color: black;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+
+#root > .css-advny6-MuiPopper-root {
+  width: auto;
+  display: block;
+}
+
+

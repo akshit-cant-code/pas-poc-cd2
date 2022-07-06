@@ -1,0 +1,52 @@
+name: pASUI
+version: 0.0.1
+scaffolds:
+  frontend:
+    blueprint:
+      arch:
+        folderPattern: flat
+        scaffoldType: responsiveWeb
+        variant: spa
+      core:
+        framework:
+          name: react
+          version: 1.0.0
+        lang:
+          name: ES6
+          version: 1.0.0
+      dataLayer:
+        ? name
+      style:
+        design: material
+    addons:
+      - name: utils
+        entities:
+          - name: helpers
+            entities:
+              - name: stringHelper
+              - name: objectHelper
+              - name: arrayHelper
+      - name: services
+        entities:
+          - name: browserHistory
+          - name: crypto
+      - name: components
+        entities:
+          - name: common
+            entities:
+              - name: formControls
+                entities:
+                  - name: textInput
+                  - name: selectBox
+                  - name: buttonGroup
+                  - name: checkBox
+                  - name: autoSuggest
+                  - name: radioButtonGroup
+              - name: loadingIndicator
+          - name: wildcards
+            entities:
+              - name: internalServerError
+              - name: notFound
+              - name: unauthorized
+    features:
+      - name: centralLoader

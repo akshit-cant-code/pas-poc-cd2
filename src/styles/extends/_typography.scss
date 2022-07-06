@@ -1,0 +1,148 @@
+@import "../themes/default.module";
+
+%typography-h1 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-bold");
+    font-size: variable("font-size-large");
+    line-height: variable("line-height-single");
+    color: variable("primary-accent-color");
+  }
+}
+
+%typography-h2 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-bold");
+    font-size: variable("font-size-large-small");
+    line-height: variable("line-height-single");
+    color: variable("primary-accent-color");
+  }
+}
+
+%typography-h3 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-bold");
+    font-size: variable("font-size-medium-large");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-h4 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-bold");
+    font-size: variable("font-size-medium");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-h5 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-light-bold");
+    font-size: variable("font-size-medium-small");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-h6 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-light-bold");
+    font-size: variable("font-size-default");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-subtitle1 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("font-size-default");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-subtitle2 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-medium");
+    font-size: variable("font-size-small");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-body1 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("$font-size-xsmall");
+    line-height: variable("line-height-single");
+  }
+}
+
+%anchor {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("$font-size-xsmall");
+    line-height: variable("line-height-single");
+  }
+}
+
+%typography-body2 {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("$font-size-0");
+    line-height: variable("line-height-single");
+  }
+}
+
+%button {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-medium");
+    font-size: variable("font-size-default");
+    line-height: variable("line-height-single");
+  }
+}
+
+%caption {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("font-size-default");
+    line-height: variable("line-height-single");
+  }
+}
+
+%overline {
+  @include theme {
+    font-family: variable("font-family");
+    font-weight: variable("font-weight-regular");
+    font-size: variable("$font-size-0");
+    line-height: variable("line-height-single");
+    text-transform: uppercase;
+  }
+}
+
+%input-text {
+  @include theme {
+    font-family: variable("paragraph-font-family");
+    line-height: variable("line-height-single");
+    font-size: variable("font-size-medium-small");
+    font-weight: variable("font-weight-medium");
+  }
+}
+
+%input-label {
+  @include theme {
+    font-family: variable("paragraph-font-family");
+    line-height: variable("line-height-single");
+    font-size: variable("font-size-medium-small");
+    font-weight: variable("font-weight-medium");
+  }
+}
