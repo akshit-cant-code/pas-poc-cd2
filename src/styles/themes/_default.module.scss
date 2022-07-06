@@ -1,0 +1,320 @@
+@import "../mixins/theme";
+
+$variables-default: (
+  primary-light: #7986cb,
+  primary-main: #3f51b5,
+  primary-dark: #303f9f,
+  primary-contrast-text: #fff,
+  secondary-light: #ff4081,
+  secondary-main: #f50057,
+  secondary-dark: #c51162,
+  secondary-contrast-text: #fff,
+  error-light: #e57373,
+  error-main: #f44336,
+  error-dark: #d32f2f,
+  error-contrast-text: #ffffff,
+  warning-light: #ffb74d,
+  warning-main: #ff9800,
+  warning-dark: #f57c00,
+  warning-contrast-text: rgba(0, 0, 0, 0.87),
+  info-light: #64b5f6,
+  info-main: #2196f3,
+  info-dark: #1976d2,
+  info-contrast-text: #fff,
+  success-light: #81c784,
+  success-main: #81c784,
+  success-dark: #388e3c,
+  success-contrast-text: rgba(0, 0, 0, 0.87),
+  primary-accent-color: rgba(0, 0, 0, 0.87),
+  secondary-accent-color: rgba(0, 0, 0, 0.54),
+  primary-text-color: rgba(0, 0, 0, 0.87),
+  secondary-text-color: rgba(0, 0, 0, 42.54),
+  tertiary-text-color: gba(0, 0, 0, 42.38),
+  background-color: #f2f1f6,
+  color-neutral-0: #000,
+  color-neutral-10: #333,
+  color-neutral-20: #666,
+  color-neutral-30: #888,
+  color-neutral-40: #ccc,
+  color-neutral-50: #eee,
+  color-neutral-100: #fff,
+  color-neutral-15: #444444,
+  color-neutral-32: #b2b2b2,
+  color-neutral-35: #bbb,
+  color-neutral-48: #e0e0e0,
+  color-neutral-25: #7f7f7f,
+  font-family: "Inter",
+  secondary-font-family: "Muller",
+  base-font-size: 16px,
+  font-size-xlarge: 3rem,
+  //48px
+  font-size-large: 2.5rem,
+  //40px
+  font-size-large-small: 2rem,
+  //32px
+  font-size-medium-large: 1.75rem,
+  //28px
+  font-size-medium: 1.5rem,
+  //24px
+  font-size-medium-small: 1.25rem,
+  //20px
+  font-size-default: 1rem,
+  //16px
+  font-size-small: 0.9375rem,
+  //15px
+  font-size-mid-small: 0.875rem,
+  //14px
+  font-size-xsmall: 0.8125rem,
+  //13px
+  font-size-0: 0.75rem,
+  title-font-family: font-family,
+  paragraph-font-family: font-family,
+  input-font-family: font-family,
+  line-height-normal: 1,
+  line-height-single: 1,
+  line-height-multiline: 1.2,
+  line-height-paragraph: 1.4,
+  line-height-size-xsmall: 18px,
+  font-weight-extra-bold: 900,
+  font-weight-bold: 700,
+  font-weight-light-bold: 600,
+  font-weight-medium: 500,
+  font-weight-regular: 400,
+  font-weight-light: 300,
+  elevation-0: 0 0 0 0 rgba(0, 0, 0, 0),
+  elevation-1: 0 4px 0 0 rgba(0, 0, 0, 0.1),
+  btn-elevation: 0px 4px 30px rgba(20, 34, 117, 0.25),
+  border-line: 1px solid rgba(20, 34, 117, 0.15),
+  border-radius-32: 32px,
+  border-radius-16: 16px,
+  border-radius-4: 4px,
+);
+
+@function defaultVariable($variable) {
+  @return map-get($variables-default, $variable);
+}
+
+$primary: (
+  light: defaultVariable("primary-light"),
+  main: defaultVariable("primary-main"),
+  dark: defaultVariable("primary-dark"),
+  contrast-text: defaultVariable("color-neutral-100"),
+);
+
+$secondary: (
+  light: defaultVariable("secondary-light"),
+  main: defaultVariable("secondary-main"),
+  dark: defaultVariable("secondary-dark"),
+  contrast-text: defaultVariable("color-neutral-100"),
+);
+
+$error: (
+  light: defaultVariable("error-light"),
+  main: defaultVariable("error-main"),
+  dark: defaultVariable("error-dark"),
+  contrast-text: defaultVariable("color-neutral-100"),
+);
+
+$warning: (
+  light: defaultVariable("warning-light"),
+  main: defaultVariable("warning-main"),
+  dark: defaultVariable("warning-dark"),
+  contrast-text: defaultVariable("$warning-contrast-text"),
+);
+
+$info: (
+  light: defaultVariable("info-light"),
+  main: defaultVariable("info-main"),
+  dark: defaultVariable("info-dark"),
+  contrast-text: defaultVariable("$info-contrast-text"),
+);
+
+$success: (
+  light: defaultVariable("success-light"),
+  main: defaultVariable("success-main"),
+  dark: defaultVariable("success-dark"),
+  contrast-text: defaultVariable("$success-contrast-text"),
+);
+
+$grey: (
+  50: #fafafa,
+  100: #f5f5f5,
+  200: #eeeeee,
+  300: #e0e0e0,
+  400: #bdbdbd,
+  500: #9e9e9e,
+  600: #757575,
+  700: #616161,
+  800: #424242,
+  900: #212121,
+  A100: #d5d5d5,
+  A200: #aaaaaa,
+  A400: #303030,
+  A700: #616161,
+);
+
+$text: (
+  primary: defaultVariable("primary-text-color"),
+  secondary: defaultVariable("secondary-text-color"),
+  disabled: rgba(0, 0, 0, 0.38),
+  hint: rgba(0, 0, 0, 0.38),
+  icon: rgba(0, 0, 0, 0.38),
+  divider: rgba(255, 255, 255, 0.12),
+);
+
+$background: (
+  paper: defaultVariable("color-neutral-100"),
+  default: defaultVariable("background-grey"),
+);
+
+$typography: (
+  html-font-size: defaultVariable("base-font-size"),
+  font-family: defaultVariable("font-family"),
+  font-size: defaultVariable("base-font-size"),
+  font-weight-light: defaultVariable("font-weight-light"),
+  font-weight-regular: defaultVariable("font-weight-regular"),
+  font-weight-medium: defaultVariable("font-weight-medium"),
+  font-weight-bold: defaultVariable("font-weight-bold"),
+);
+
+$typography-h1: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-bold"),
+  font-size: defaultVariable("font-size-large"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-h2: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-bold"),
+  font-size: defaultVariable("font-size-large-small"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-h3: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-bold"),
+  font-size: defaultVariable("font-size-medium-large"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-h4: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-bold"),
+  font-size: defaultVariable("font-size-medium"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-h5: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-light-bold"),
+  font-size: defaultVariable("font-size-medium-small"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-h6: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-light-bold"),
+  font-size: defaultVariable("font-size-default"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-subtitle1: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-regular"),
+  font-size: defaultVariable("font-size-default"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-subtitle2: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-medium"),
+  font-size: defaultVariable("font-size-small"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-body1: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-regular"),
+  font-size: defaultVariable("font-size-xsmall"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$typography-body2: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-regular"),
+  font-size: defaultVariable("font-size-0"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$button: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-medium"),
+  font-size: defaultVariable("font-size-default"),
+  line-height: defaultVariable("line-height-normal"),
+  textTransform: capitalize,
+);
+
+$caption: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-regular"),
+  font-size: defaultVariable("font-size-default"),
+  line-height: defaultVariable("line-height-normal"),
+);
+
+$overline: (
+  font-family: defaultVariable("font-family"),
+  font-weight: defaultVariable("font-weight-regular"),
+  font-size: defaultVariable("font-size-0"),
+  line-height: defaultVariable("line-height-normal"),
+  letter-spacing: 0.08333em,
+  text-transform: uppercase,
+);
+
+$action: (
+  active: rgba(0, 0, 0, 0.54),
+  hover: rgba(0, 0, 0, 0.04),
+  hoverOpacity: 0.04,
+  selected: rgba(0, 0, 0, 0.08),
+  selectedOpacity: 0.08,
+  disabled: rgba(0, 0, 0, 0.26),
+  disabledBackground: rgba(0, 0, 0, 0.12),
+  disabledOpacity: 0.38,
+  focus: rgba(0, 0, 0, 0.12),
+  focusOpacity: 0.12,
+  activatedOpacity: 0.12,
+);
+
+$shape: (
+  border-radius: 4,
+);
+
+$default-theme: (
+  palette-primary: $primary,
+  palette-secondary: $secondary,
+  palette-info: $info,
+  palette-success: $success,
+  palette-warning: $warning,
+  palette-error: $error,
+  palette-grey: $grey,
+  palette-text: $text,
+  palette-background: $background,
+  palette-action: $action,
+  typography: $typography,
+  typography-h1: $typography-h1,
+  typography-h2: $typography-h2,
+  typography-h3: $typography-h3,
+  typography-h4: $typography-h4,
+  typography-h5: $typography-h5,
+  typography-h6: $typography-h6,
+  typography-subtitle1: $typography-subtitle1,
+  typography-subtitle2: $typography-subtitle2,
+  typography-body1: $typography-body1,
+  typography-body2: $typography-body2,
+  button: $button,
+  caption: $caption,
+  overline: $overline,
+  shape: $shape,
+);
+
+@include export-theme($default-theme);

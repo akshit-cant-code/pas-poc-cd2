@@ -1,0 +1,13 @@
+html {
+  @include theme {
+    font-size: variable("base-font-size");
+  }
+}
+
+body {
+  @extend %typography-body1;
+
+  @include theme {
+    color: variable("color-neutral-10");
+  }
+}

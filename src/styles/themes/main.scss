@@ -1,0 +1,7 @@
+@import "./default.module";
+@import "./dark.module";
+
+$theme-variables: (
+  default: $variables-default,
+  dark: $variables-dark,
+);

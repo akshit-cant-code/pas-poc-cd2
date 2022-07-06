@@ -1,0 +1,19 @@
+//
+// Icons as an Image
+// --------------------------------------------------
+// Refer icon name and size
+//
+
+@mixin preload-background-image($image-path) {
+  background-image: url($image-path);
+  $preloaded-images: preload-image($image-path);
+}
+
+@function preload-image($image-path) {
+  $preloaded-images: append(
+    $preloaded-images,
+    url($image-path),
+    $separator: auto
+  ) !global;
+  @return $preloaded-images;
+}
