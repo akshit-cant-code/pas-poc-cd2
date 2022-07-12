@@ -112,10 +112,11 @@ const Nav = ({ onThemeChange, currentTheme, t,children }) => {
             {/* <Tooltip>
         
             </Tooltip> */}
-            <Grid item xs={3}>
+            <Grid item xs={2}>
             <Export></Export>
 
             </Grid>
+           
              <Grid>
             
 

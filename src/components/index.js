@@ -9,4 +9,5 @@ import Home from './Home/Home';
 import * as Wildcards from './Wildcards';
 import * as Common from './Common';
 import Dashboard from '../components/Dashboard/Dashboard'
-export { Home, Dashboard,Wildcards, Common };
+import QueryPage from '../components/QueryPage/QueryPage'
+export { Home, Dashboard,QueryPage,Wildcards, Common };

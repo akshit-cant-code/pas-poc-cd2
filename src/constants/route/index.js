@@ -12,6 +12,7 @@ const ROUTE_CONSTANTS = {
     NOTFOUND: '/not-found',
     UNAUTHORIZED: '/unauthorized'
   },
-  DASHBOARD:"/Dashboard"
+  DASHBOARD:"/Dashboard",
+  QUERYPAGE: "/QueryPage"
 };
 export default ROUTE_CONSTANTS;

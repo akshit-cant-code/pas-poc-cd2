@@ -1,4 +1,5 @@
 import { Home, Wildcards,Dashboard } from '../components';
+import QueryPage from '../components/QueryPage/QueryPage';
 import { ROUTE_CONSTANTS, APP_CONSTANTS } from '../constants';
 
 const appRoutes = [{
@@ -10,6 +11,12 @@ const appRoutes = [{
 {
   path: ROUTE_CONSTANTS.DASHBOARD,
   component: Dashboard,
+  exact: true,
+  type: APP_CONSTANTS.ROUTE_TYPES.PUBLIC
+},
+{
+  path: ROUTE_CONSTANTS.QUERYPAGE,
+  component: QueryPage,
   exact: true,
   type: APP_CONSTANTS.ROUTE_TYPES.PUBLIC
 },
