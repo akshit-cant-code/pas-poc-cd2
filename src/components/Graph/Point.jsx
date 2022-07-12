@@ -4,38 +4,6 @@ import ReactEcharts from "echarts-for-react";
 import { time } from "echarts";
 
 function Point(props){
-  const [dataList, setDataList] = useState();
-  const [Url ,setUrl] = useState(`https://localhost:739/InfluxClient?query=select * from airSensors`)
-
-  //const data = useFetch("https://localhost:7239/InfluxClient?query=t");
-
-  //console.log("fetch",data);
-  /*useEffect(() => {
-
-    if("Url" in props){
-       
-          fetch("https://localhost:7239/InfluxClient?query="+props.Url)
-
-          .then(results => results.json())
-          .then(data => {
-            setDataList(data);
-           console.log("data called")
-          });
-        
-        console.log(props)
-    }
-    else{
-    fetch(Url)
-
-      .then(results => results.json())
-      .then(data => {
-        setDataList(data);
-       console.log("data called")
-      });
-    }
-  }, [props.Url]);*/
-
-  console.log("dataList",props.dataList);
     const point = {
         title: {
           top: '10%',
