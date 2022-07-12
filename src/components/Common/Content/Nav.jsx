@@ -183,9 +183,9 @@ const Nav = ({ onThemeChange, currentTheme, t,children }) => {
 Nav.defaultProps = {};
 
 Nav.propTypes = {
-  onThemeChange: PropTypes.func.isRequired,
-  currentTheme: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired
+  onThemeChange: PropTypes.func,
+  currentTheme: PropTypes.string,
+  t: PropTypes.func
 };
 
 export default Nav;

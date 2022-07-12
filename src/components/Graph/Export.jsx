@@ -17,7 +17,6 @@ const Export = (props) => {
         setLoading(true);
         const graphEle = document.querySelectorAll(".flex-container, .flex-container-point")
         const pdf = new jsPDF('l', 'pt', 'a4', false);
-        console.log("graphEle", graphEle.length);
         graphEle.forEach((ele, i) => {
             html2canvas(ele).then((canvas) => {
                 const imgData = canvas.toDataURL("image/png");

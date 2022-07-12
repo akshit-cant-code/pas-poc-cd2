@@ -4,7 +4,6 @@ import ReactEcharts from "echarts-for-react";
 
 
 function Gauge({perData,risk}) {
-  console.log({perData,risk})
   const option = {
 
     series: [

@@ -3,6 +3,8 @@ import ReactEcharts from "echarts-for-react";
 
 
 function Pie({title,dataItem}) { 
+  console.log(dataItem)
+  console.log(title)
 const option = {
     title: {
       text: title,
