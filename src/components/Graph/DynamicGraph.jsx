@@ -30,11 +30,22 @@ import Point from "./Point";
 import HeatMap from "./HeatMap";
 import Stacked from "./StackedBar";
 import Discrete from "./Discrete";
+import NavBar from "../QueryPage/NavBar";
+import Form from "../QueryPage/Form";
+import EmptyPage from "../QueryPage/EmptyPage";
+import  DateRange  from "./DateRange";
+import {  addDays} from 'date-fns'
+
 class DynamicGraph extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       selectedCardType: "",
+      dataList:[],
+    timeRange:  {
+      "endDate" : addDays(new Date(), 1),
+       "StartDate": new Date()
+      }
     };
 
     this.onThemeChange = this.onThemeChange.bind(this);
@@ -44,6 +55,29 @@ class DynamicGraph extends Component {
   handleChange = (event) => {
     this.setState({ ...event.target.value });
   };
+
+  handleCallback = (childData) =>{      
+    var Tag = Point;
+    if("name" in childData){
+       //Tag=childData.Graph
+       var Query = childData.name.replace("$timeRange" ,'time > '+ this.state.timeRange.StartDate.toISOString()+' and time < '+ this.state.timeRange.endDate.toISOString() )
+       var Temp = {Graph: this.state.selectedCardType.label, query : Query}
+          fetch("https://localhost:7239/InfluxClient" ,{
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(Temp)
+        }).then(data => {
+            this.setState({dataList:data});
+          });   
+          this.renderSelectedCard(this.state.selectedCardType);        
+    } 
+    else {
+        this.state.timeRange = childData;
+    }
+  }
 
   componentDidMount() {}
 
@@ -56,8 +90,14 @@ class DynamicGraph extends Component {
     actions.currentTheme(theme);
   }
 
+  
   state = {
     selectedCardType: "",
+    dataList:[],
+    timeRange:  {
+      "endDate" : addDays(new Date(), 1),
+       "StartDate": new Date()
+      }
   };
 
   render() {
@@ -68,8 +108,8 @@ class DynamicGraph extends Component {
           <Typography variant="h4" sx={{ mb: 3 }}></Typography>
 
           <Grid container spacing={2}>
-            <Grid item xs={8}>
-              {/* {this.renderCardSelector()} */}
+            <Grid item xs={12}  sm={8} md={8} >
+             <DateRange parentCallback = {this.handleCallback}></DateRange>
             </Grid>
             <Grid item xs={4}>
               {this.renderCardSelector()}
@@ -78,23 +118,27 @@ class DynamicGraph extends Component {
               <Card
                 sx={{
                   minHeight: "250px",
-                  width: "830px",
+                  width: "100%",
                   background: "rgb(24, 22, 22)",
                 }}
               >
                 {this.renderSelectedCard(this.state.selectedCardType)}
               </Card>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={3} md={3}>
               <Card>
                
                 {<PanelTabs></PanelTabs>}
-
-             
-            
-              </Card>
-          
+           
+              </Card>         
             </Grid>
+            <Grid item xs={12} sm={8} md={8}>
+            <NavBar></NavBar>
+          <Card sx={{  background:"rgb(24, 22, 22)"}}>           
+               {<Form parentCallback = {this.handleCallback}></Form> }
+              </Card>
+          </Grid>
+           
           </Grid>
         </Container>
       </Nav>
@@ -107,7 +151,6 @@ class DynamicGraph extends Component {
         sx={{ width: 300 }}
         options={graphsTypes}
         onChange={(event, newValue) => {
-          console.log(newValue);
           this.setState({ selectedCardType: "" });
 
           if (newValue != undefined) {
@@ -163,34 +206,27 @@ class DynamicGraph extends Component {
   }
 
   renderSelectedCard(selectedCardType) {
-    console.log(selectedCardType);
     const gTypes = selectedCardType.label;
     // const Card = GraphTypes[selectedCardType];
     var graphs = "";
     switch (gTypes) {
       case "Line":
-        graphs = <Line></Line>;
+        graphs = <Line dataList={this.state.dataList}></Line>;
         break;
-      case "Bar Chart":
-        graphs = <Bar></Bar>;
+      case "Bar":
+        graphs = <Bar dataList={this.state.dataList}></Bar>;
         break;
       case "Gauge":
-        graphs = <Gauge perData="26.5" risk={"#FF6E76"}></Gauge>;
+        graphs = <Gauge dataList={this.state.dataList} perData="26.5" risk={"#FF6E76"}></Gauge>;
         break;
       case "Point":
-        graphs = <Point></Point>;
+        graphs = <Point dataList={this.state.dataList}></Point>;
         break;
       case "HeatMap":
-        graphs = <HeatMap></HeatMap>;
+        graphs = <HeatMap dataList={this.state.dataList}></HeatMap>;
         break;
       default:
-        graphs = (
-          <h1
-            style={{ color: "white", textAlign: "center", marginTop: "20px" }}
-          >
-            No data
-          </h1>
-        );
+        <EmptyPage></EmptyPage>;
     }
 
     return graphs;
@@ -315,7 +351,7 @@ export default withTranslation(I18N_CONSTANTS.NAMESPACE.DynamicGraph)(
   component
 );
 const graphsTypes = [
-  { label: "Bar Chart", path: "/assets/images/barchart.svg" },
+  { label: "Bar", path: "/assets/images/barchart.svg" },
   { label: "Line", path: "/assets/images/Line.svg" },
   { label: "Gauge", path: "/assets/images/Gauge.svg" },
   { label: "Point", path: "/assets/images/Line.png" },
