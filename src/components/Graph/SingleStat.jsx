@@ -1,10 +1,10 @@
 import React from "react";
 
-function SingleStat(){
-   return( <div style={{height:"250px", width:"400px",  textAlign: "center", paddingTop: "50px", marginLeft:"120px"}}>
+function SingleStat(props){
+   return( <div style={{height:"150px", width:"300px",  textAlign: "center", color:"white",fontFamily:'Microsoft YaHei',fontSize:"14px",fontWeight:"bold"}}>
 
         Output Rate
-        <div style={{fontSize:"40px", paddingTop:"80px", fontWeight:"bold"}}>1,179 cph</div>
+        <div style={{fontSize:"30px", paddingTop:"60px", fontWeight:"bold"}}>{props.value}</div>
     </div>);
 }
 export default SingleStat; 
