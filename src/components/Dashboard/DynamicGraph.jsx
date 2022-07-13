@@ -11,6 +11,7 @@ import Line from "../Graph/Line";
 import Bar from "../Graph/Bar";
 import StackedBar from "../Graph/StackedBar";
 import HeatMap from "../Graph/HeatMap";
+import Table from "../Graph/Table";
 import { PropTypes } from "prop-types";
 import { withTranslation } from "react-i18next";
 import { sessionAction } from "../../redux/actions";
@@ -72,8 +73,7 @@ const layout = [
   { i: "d", x: 8, y: 0, w: 5, h: 8 },
   { i: "e", x: 0, y: 8, w: 7, h: 8 },
   { i: "f", x: 7, y: 8, w: 5, h: 8 },
-  { i: "g", x: 0, y: 16, w: 7, h: 8 },
-  { i: "h", x: 7, y: 16, w: 5, h: 8 },
+  { i: "g", x: 0, y: 16, w: 12, h: 8 },
 ];
 
 const DynamicGraph = (props) => {
@@ -81,7 +81,7 @@ const DynamicGraph = (props) => {
   const [discrete, setDiscrete] = useState(0);
   const [bar, setBar] = useState(0);
   const [line, setLine] = useState(0);
-  const [pies, setPies] = useState(0);
+
   const [stack, setStack] = useState(0);
   const [grid, setGrid] = useState();
   const elementRef = useRef(null);
@@ -93,7 +93,7 @@ const DynamicGraph = (props) => {
     const discretes = document.querySelector(".discrete").offsetWidth;
     const bars = document.querySelector(".bar").offsetWidth;
     const lines = document.querySelector(".lines").offsetWidth;
-    const piess = document.querySelector(".pies").offsetWidth;
+
     const stacks = document.querySelector(".stack").offsetWidth;
 
     setPoint(points);
@@ -101,7 +101,7 @@ const DynamicGraph = (props) => {
     setDiscrete(discretes);
     setBar(bars);
     setLine(lines);
-    setPies(piess);
+
     setStack(stacks);
   }, [grid]);
 
@@ -154,7 +154,7 @@ const DynamicGraph = (props) => {
               </Card>
             </Grid>
 
-            <Grid item key="e" className="discrete">
+            <Grid item key="e" className="lines">
               <Card
                 sx={{
                   height: "inherit",
@@ -162,7 +162,7 @@ const DynamicGraph = (props) => {
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<Discrete discreteWidth={discrete}></Discrete>}
+                {<HeatMap heatWidth={line}></HeatMap>}
               </Card>
             </Grid>
 
@@ -178,7 +178,7 @@ const DynamicGraph = (props) => {
               </Card>
             </Grid>
 
-            <Grid item key="g" className="lines">
+            <Grid item key="g" className="discrete">
               <Card
                 sx={{
                   height: "inherit",
@@ -186,25 +186,7 @@ const DynamicGraph = (props) => {
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<HeatMap heatWidth={line}></HeatMap>}
-              </Card>
-            </Grid>
-
-            <Grid item key="h" className="pies">
-              <Card
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                {
-                  <Pie
-                    title="Cards by Job Setup"
-                    dataItem={dataListJobSetup}
-                    pieWidth={pies}
-                  ></Pie>
-                }
+                {<Table></Table>}
               </Card>
             </Grid>
           </GridLayout>

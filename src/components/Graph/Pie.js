@@ -8,7 +8,7 @@ function Pie({ title, dataItem, pieWidth }) {
     title: {
       text: title,
       subtext: "",
-      left: "center",
+      left: "20%",
       textStyle: {
         fontSize: 12,
         color: "white",
@@ -21,6 +21,7 @@ function Pie({ title, dataItem, pieWidth }) {
       orient: "vertical",
       right: "right",
       type: "scroll",
+      right: "5%",
       textStyle: {
         color: "white",
         fontSize: "10px",
@@ -34,7 +35,8 @@ function Pie({ title, dataItem, pieWidth }) {
       {
         name: "",
         type: "pie",
-        radius: "50%",
+        radius: "60%",
+        center: ["35%", "50%"],
         data: dataItem,
         itemStyle: {
           normal: {
