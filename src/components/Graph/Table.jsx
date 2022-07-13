@@ -458,7 +458,7 @@ export default function Table() {
   }
 
   return (
-    <div style={{ height: 350, width: "100%" }}>
+    <div style={{ height: 350, width: "95%" }}>
       <DataGrid
         rows={values}
         columns={column}
