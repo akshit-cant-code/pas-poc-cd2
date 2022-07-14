@@ -2,8 +2,10 @@ import * as React from "react";
 // import { LinearProgress } from "@mui/material";
 // import {makeStyles} from "@mui/styles";
 //const {LinearProgress, makeStyles} = MaterialUI
+import "./Graph.css";
 
 function ProgressBar(props) {
+  console.log("props", props);
   var progress = props.progress;
   return (
     <div>

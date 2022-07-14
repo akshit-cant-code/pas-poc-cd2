@@ -21,6 +21,10 @@ import { bindActionCreators } from "redux";
 import { makeStyles } from "@material-ui/core/styles";
 import GridLayout from "react-grid-layout";
 import "./ReactGrid.css";
+import Nav from "../Common/Content/Nav";
+import Button from "@mui/material/Button";
+import SaveIcon from "@mui/icons-material/Save";
+import Tooltip from "@mui/material/Tooltip";
 
 var dataListCardSetup = [
   { value: 1048, name: "CardSetUp1" },
@@ -110,102 +114,124 @@ const DynamicGraph = (props) => {
     setGrid(layout);
   };
 
+  const getLayouts = () => {
+    const savedLayouts = localStorage.getItem("grid-layout");
+
+    return savedLayouts ? JSON.parse(savedLayouts) : layout;
+  };
+
+  const saveLayouts = () => {
+    localStorage.setItem("grid-layout", JSON.stringify(grid));
+  };
+
   const { session, t } = props;
   console.log({ session, t });
   // console.log("height", this.state.height);
   return (
-    <Page title="Dashboard">
-      <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
-        <Typography variant="h4" sx={{ mb: 3 }}></Typography>
-
-        <Grid container spacing={1}>
-          <GridLayout
-            className="layout"
-            layout={layout}
-            cols={12}
-            rowHeight={30}
-            width={1200}
-            onLayoutChange={handleLayoutChange}
+    <Page title="Dashboard" style={{ background: "black" }}>
+      <Nav>
+        <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
+          <Grid
+            title="Save Layout"
+            style={{ paddingLeft: "88.5%", marginBottom: "0.5%" }}
           >
-            <Grid key="a" className="point">
-              <Card
-                ref={elementRef}
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                <Point pointWidth={point}></Point>
-              </Card>
-            </Grid>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={saveLayouts}
+              startIcon={<SaveIcon />}
+            >
+              Save
+            </Button>
+          </Grid>
+          <Grid container spacing={1}>
+            <GridLayout
+              className="layout"
+              layout={getLayouts()}
+              cols={12}
+              rowHeight={30}
+              width={1200}
+              onLayoutChange={handleLayoutChange}
+            >
+              <Grid key="a" className="point">
+                <Card
+                  ref={elementRef}
+                  sx={{
+                    height: "inherit",
+                    width: "inherit",
+                    background: "rgb(24, 22, 22)",
+                  }}
+                >
+                  <Point pointWidth={point}></Point>
+                </Card>
+              </Grid>
 
-            <Grid key="d" className="stack">
-              {/* { <AppWidgetSummary title="Output Rate" total={"1,179 cph"}   /> } */}
+              <Grid key="d" className="stack">
+                {/* { <AppWidgetSummary title="Output Rate" total={"1,179 cph"}   /> } */}
 
-              <Card
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                {<StackedBar stackWidth={stack}></StackedBar>}
-              </Card>
-            </Grid>
+                <Card
+                  sx={{
+                    height: "inherit",
+                    width: "inherit",
+                    background: "rgb(24, 22, 22)",
+                  }}
+                >
+                  {<StackedBar stackWidth={stack}></StackedBar>}
+                </Card>
+              </Grid>
 
-            <Grid item key="e" className="lines">
-              <Card
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                {<HeatMap heatWidth={line}></HeatMap>}
-              </Card>
-            </Grid>
+              <Grid item key="e" className="lines">
+                <Card
+                  sx={{
+                    height: "inherit",
+                    width: "inherit",
+                    background: "rgb(24, 22, 22)",
+                  }}
+                >
+                  {<HeatMap heatWidth={line}></HeatMap>}
+                </Card>
+              </Grid>
 
-            <Grid item key="f" className="bar">
-              <Card
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                {<Bar barWidth={bar}></Bar>}
-              </Card>
-            </Grid>
+              <Grid item key="f" className="bar">
+                <Card
+                  sx={{
+                    height: "inherit",
+                    width: "inherit",
+                    background: "rgb(24, 22, 22)",
+                  }}
+                >
+                  {<Bar barWidth={bar}></Bar>}
+                </Card>
+              </Grid>
 
-            <Grid item key="g" className="discrete">
-              <Card
-                sx={{
-                  height: "inherit",
-                  width: "inherit",
-                  background: "rgb(24, 22, 22)",
-                }}
-              >
-                {<Table></Table>}
-              </Card>
-            </Grid>
-          </GridLayout>
-        </Grid>
-      </Container>
+              <Grid item key="g" className="discrete">
+                <Card
+                  sx={{
+                    height: "inherit",
+                    width: "inherit",
+                    background: "rgb(24, 22, 22)",
+                  }}
+                >
+                  {<Table></Table>}
+                </Card>
+              </Grid>
+            </GridLayout>
+          </Grid>
+        </Container>
+      </Nav>
     </Page>
   );
 };
 
-DynamicGraph.propTypes = {
-  session: PropTypes.shape({
-    currentTheme: PropTypes.string.isRequired,
-  }).isRequired,
-  actions: PropTypes.shape({
-    currentTheme: PropTypes.func.isRequired,
-  }).isRequired,
-  t: PropTypes.func.isRequired,
-};
-
+// DynamicGraph.propTypes = {
+//   session: PropTypes.shape({
+//     currentTheme: PropTypes.string.isRequired,
+//   }).isRequired,
+//   actions: PropTypes.shape({
+//     currentTheme: PropTypes.func.isRequired,
+//   }).isRequired,
+//   t: PropTypes.func.isRequired,
+// };
 function mapStateToProps(state) {
   return {
     session: state.session,
