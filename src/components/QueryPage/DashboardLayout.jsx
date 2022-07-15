@@ -33,7 +33,7 @@ import NavBar from './NavBar';
         if("name" in childData){
            Tag=childData.Graph
            var Temp = {Graph: childData.Graph.name, query : childData.name}
-              fetch("https://localhost:7239/InfluxClient" ,{
+              fetch("https://localhost:7239/api/InfluxClient" ,{
                 headers: {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
