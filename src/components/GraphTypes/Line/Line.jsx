@@ -2,7 +2,9 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
 
-function Line(){
+function Line(props){
+  if (props == undefined || props.dataList[0] == undefined)
+  return null
     const line = {
         title: {
           text: 'Production Progress -All',
@@ -13,8 +15,8 @@ function Line(){
             }
         },
         xAxis: [{
-         type: "category",
-          data: [ '10/4','10/7','10/10','10/13','10/16','10/19','10/22','10/25','10/28'],
+         type: "time",
+          data: props.dataList[0].time,
           boundaryGap: false,
     
           axisLine: {
@@ -51,7 +53,7 @@ function Line(){
 
             },
           
-            data: [0, 1000,1000,1000,2000, 3000, 5000,5000,5200,7000,7200],
+            data: props.dataList[0].data,
     
           }
         ]

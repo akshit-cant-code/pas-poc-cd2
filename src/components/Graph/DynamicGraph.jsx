@@ -43,6 +43,7 @@ class DynamicGraph extends Component {
     this.state = {
       selectedCardType: "",
       dataList: [],
+      child: "",
       timeRange: {
         endDate: addDays(new Date(), 1),
         StartDate: new Date(),
@@ -59,6 +60,8 @@ class DynamicGraph extends Component {
 
   handleCallback = (childData) => {
     var Tag = Point;
+    this.setState({ child: childData.name });
+    console.log(childData, "Callback");
     if ("name" in childData) {
       //Tag=childData.Graph
       var Query = childData.name.replace(
@@ -69,16 +72,20 @@ class DynamicGraph extends Component {
           this.state.timeRange.endDate.toISOString()
       );
       var Temp = { Graph: this.state.selectedCardType.label, query: Query };
-      fetch("https://localhost:7239/InfluxClient", {
+      fetch("https://localhost:7239/api/InfluxClient", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         method: "POST",
         body: JSON.stringify(Temp),
-      }).then((data) => {
-        this.setState({ dataList: data });
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          this.setState({ dataList: data });
+          console.log(data);
+          console.log(data[0].data);
+        });
       this.renderSelectedCard(this.state.selectedCardType);
     } else {
       this.state.timeRange = childData;
@@ -231,9 +238,11 @@ class DynamicGraph extends Component {
     const gTypes = selectedCardType.label;
     // const Card = GraphTypes[selectedCardType];
     var graphs = "";
+    console.log("child value", this.state.child);
     switch (gTypes) {
       case "Line":
-        graphs = <Line dataList={this.state.dataList}></Line>;
+        let queryValue = this.state.child != "" ? this.state.dataList : [];
+        graphs = <Line dataList={queryValue}></Line>;
         break;
       case "Bar":
         graphs = <Bar dataList={this.state.dataList}></Bar>;
