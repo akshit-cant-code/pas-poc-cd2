@@ -35,8 +35,8 @@ function DateRange(props) {
       format="yyyy-MM-dd HH:mm:ss"
       onChange={(range) => {
         var dateRange = {
-          endDate: range[0],
-          StartDate: range[1],
+          endDate: range[1],
+          StartDate: range[0],
         };
         props.parentCallback(dateRange);
       }}

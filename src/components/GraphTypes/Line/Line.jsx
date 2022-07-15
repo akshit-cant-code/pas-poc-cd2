@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactEcharts from 'echarts-for-react';
+import { useEffect ,useState } from 'react';
 
 
 function Line(props){
   if (props == undefined || props.dataList[0] == undefined)
   return null
+  const [title, SetTitle] = useState('Production Progress -All');
+  useEffect(() => {
+      if(!(props.title==""||props.title==null))
+        SetTitle(props.title)
+        else{
+         
+        }
+  
+}, [props.title]);
+  console.log(title)
     const line = {
         title: {
-          text: 'Production Progress -All',
+          text: title,
           left: 'center',
           textStyle: {
             color: 'white',
@@ -15,7 +26,7 @@ function Line(props){
             }
         },
         xAxis: [{
-         type: "time",
+          type: "time",
           data: props.dataList[0].time,
           boundaryGap: false,
     

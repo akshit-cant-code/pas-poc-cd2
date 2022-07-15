@@ -1,6 +1,8 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"; 
 import moment from "moment";
+import { useEffect ,useState } from 'react';
+
 // Heatmap Data Feed section------------
 // const hours = [
 //     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
@@ -21,8 +23,13 @@ const hours = [
     });
 
   // end-----------
-function HeatMap(){
+function HeatMap(props){
 
+  const [title, SetTitle] = useState('Rejection Code Heatmap');
+  useEffect(() => {
+    if(!(props.title==""||props.title==null))
+        SetTitle(props.title)
+}, [props.title]);
     const heatMap = {
 
         tooltip: {
@@ -31,7 +38,7 @@ function HeatMap(){
         title: {
           top: 10,
           left: 'center',
-          text: 'Rejection Code Heatmap'
+          text: title
         },
         grid: {
           height: "50%",

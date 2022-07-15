@@ -1,13 +1,19 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"; 
+import { useEffect ,useState } from 'react';
 
 function Point(props){
-  const point = {
-    title: {
-      top: '10%',
-      text: 'TotalDuration by D_MachID ',
-      left: 'center'
-    },
+  const [title, SetTitle] = useState('TotalDuration by D_MachID ');
+  useEffect(() => {
+    if(!(props.title==""||props.title==null))
+        SetTitle(props.title)
+}, [props.title]);
+    const point = {
+        title: {
+          top: '10%',
+          text: title,
+          left: 'center'
+        },
     xAxis: {
       type: 'time',
       scale: true

@@ -2,10 +2,16 @@ import React from 'react';
 import ReactEcharts from 'echarts-for-react';
 
 
-function Line(){
+function Line(props){
+  var title = 'Production Progress -All'
+  /*if(props.title!=""||props.title!=null){
+    console.log("title:"+props.title)
+       title = props.title;
+  }*/
+  console.log(title)
     const line = {
         title: {
-          text: 'Production Progress -All',
+          text: {title},
           left: 'center',
           textStyle: {
             color: 'white',

@@ -24,7 +24,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import Line from "../GraphTypes/Line/Line";
 import Pie from "../GraphTypes/Pie/Pie";
 import Bar from "./Bar";
-import Gauge from "./Gauge";
+import Gauge from "../GraphTypes/Gauge/Gauge";
 import Nav from "../Common/Content/Nav";
 import Point from "./Point";
 import HeatMap from "./HeatMap";
@@ -42,12 +42,14 @@ class DynamicGraph extends Component {
     super(props, context);
     this.state = {
       selectedCardType: "",
-      dataList: [],
+      dataList:[],
       child: "",
-      timeRange: {
-        endDate: addDays(new Date(), 1),
-        StartDate: new Date(),
+      QueryStat : null,
+    timeRange:  {
+      "endDate" : addDays(new Date(), 1),
+       "StartDate": new Date()
       },
+      title : "",
     };
 
     this.onThemeChange = this.onThemeChange.bind(this);
@@ -60,8 +62,6 @@ class DynamicGraph extends Component {
 
   handleCallback = (childData) => {
     var Tag = Point;
-    this.setState({ child: childData.name });
-    console.log(childData, "Callback");
     if ("name" in childData) {
       //Tag=childData.Graph
       var Query = childData.name.replace(
@@ -87,10 +87,16 @@ class DynamicGraph extends Component {
           console.log(data[0].data);
         });
       this.renderSelectedCard(this.state.selectedCardType);
-    } else {
-      this.state.timeRange = childData;
     }
-  };
+    else {
+        this.setState({timeRange:childData})
+  }
+  }
+
+  SetTitle= (childData) => {
+    console.log(childData)
+    this.setState({title:childData}); 
+  }
 
   componentDidMount() {}
 
@@ -105,11 +111,12 @@ class DynamicGraph extends Component {
 
   state = {
     selectedCardType: "",
-    dataList: [],
-    timeRange: {
-      endDate: addDays(new Date(), 1),
-      StartDate: new Date(),
-    },
+    dataList:[],
+    title:"",
+    timeRange:  {
+      "endDate" : addDays(new Date(), 1),
+       "StartDate": new Date()
+      }
   };
 
   render() {
@@ -146,7 +153,11 @@ class DynamicGraph extends Component {
               </Card>
             </Grid>
             <Grid item xs={12} sm={3} md={3}>
-              <Card>{<PanelTabs></PanelTabs>}</Card>
+              <Card>
+               
+                {<PanelTabs parentCallback = {this.SetTitle} title = {this.state.title}></PanelTabs>}
+           
+              </Card>         
             </Grid>
             <Grid item xs={12} sm={8} md={8}>
               <NavBar></NavBar>
@@ -242,25 +253,19 @@ class DynamicGraph extends Component {
     switch (gTypes) {
       case "Line":
         let queryValue = this.state.child != "" ? this.state.dataList : [];
-        graphs = <Line dataList={queryValue}></Line>;
+        graphs = <Line dataList={queryValue}  title={this.state.title}></Line>;
         break;
       case "Bar":
-        graphs = <Bar dataList={this.state.dataList}></Bar>;
+        graphs = <Bar dataList={this.state.dataList} title={this.state.title}></Bar>;
         break;
       case "Gauge":
-        graphs = (
-          <Gauge
-            dataList={this.state.dataList}
-            perData="26.5"
-            risk={"#FF6E76"}
-          ></Gauge>
-        );
+        graphs = <Gauge dataList={this.state.dataList} perData="26.5" risk={"#FF6E76"} title={this.state.title}></Gauge>;
         break;
       case "Point":
-        graphs = <Point dataList={this.state.dataList}></Point>;
+        graphs = <Point dataList={this.state.dataList} title={this.state.title}></Point>;
         break;
       case "HeatMap":
-        graphs = <HeatMap dataList={this.state.dataList}></HeatMap>;
+        graphs = <HeatMap dataList={this.state.dataList} title={this.state.title}></HeatMap>;
         break;
       default:
         <EmptyPage></EmptyPage>;
@@ -268,15 +273,18 @@ class DynamicGraph extends Component {
 
     return graphs;
   }
+   
+
 }
 
-export function PanelTabs() {
+export function PanelTabs(props) {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
+  
+  
   return (
     <Box sx={{ background: "#181b1f" }}>
       <TabContext value={value}>
@@ -295,7 +303,40 @@ export function PanelTabs() {
           </TabList>
         </Box>
         <TabPanel value="1">
-          <AccordionMenu></AccordionMenu>
+        <TextField
+           InputLabelProps={{
+             style: { color: '#3f51b5' },
+             height:700,
+             input: {
+              color: "#3f51b5"
+            }
+          }}
+          inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
+            id="name-input"
+            label="Title"
+            onChange={(e)=>{props.parentCallback(e.target.value);}}
+            type="text"
+            value= {props.title}
+            fullWidth          />
+           <br></br>
+           <br></br>
+           <TextField      
+           InputLabelProps={{
+             style: { color: '#3f51b5' },
+             height:900,
+             input: {
+              color: "#3f51b5"
+            }
+          }}
+          inputProps={{ style: { fontFamily: "nunito", color: "white" , wordWrap: "break-word"} }}
+            id="name-input"
+            label="Description"
+            type="text"
+            fullWidth 
+            multiline
+            rows={3}
+            maxRows={Infinity}
+           /> 
         </TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
       </TabContext>

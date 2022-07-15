@@ -1,11 +1,18 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react"; 
+import { useEffect ,useState } from 'react';
 
-function Bar(){
+
+function Bar(props){
+  const [title, SetTitle] = useState('Rejects By Machine');
+  useEffect(() => {
+    if(!(props.title==""||props.title==null))
+        SetTitle(props.title)
+}, [props.title]);
    const bar = {
         color: ['#3398DB', '#5528DB', '#ff00DB', '#3300DB', '#de3423'],
         title: {
-          text: 'Rejects By Machine',
+          text: title,
           left: 'center'
         },
         xAxis: [

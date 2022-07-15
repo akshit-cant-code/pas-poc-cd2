@@ -35,7 +35,7 @@ const option = {
       {
         name: '',
         type: 'pie',
-        radius: '50%',
+        radius: '100%',
         data: dataItem,
           itemStyle: {
             normal : {
