@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Grid, Container, Typography } from "@mui/material";
 import AppWidgetSummary from "./AppWidgetSummary";
 import Page from "./Page";
@@ -8,6 +8,7 @@ import Discrete from "../Graph/Discrete";
 import Pie from "../Graph/Pie";
 import Point from "../Graph/Point";
 import Line from "../Graph/Line";
+import Bar from "../Graph/Bar";
 import { PropTypes } from "prop-types";
 import { withTranslation } from "react-i18next";
 import { sessionAction } from "../../redux/actions";
@@ -15,6 +16,8 @@ import { APP_CONSTANTS, I18N_CONSTANTS } from "../../constants";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { makeStyles } from "@material-ui/core/styles";
+import GridLayout from "react-grid-layout";
+import "./ReactGrid.css";
 
 var dataListCardSetup = [
   { value: 1048, name: "CardSetUp1" },
@@ -62,42 +65,72 @@ var dataListJobSetup = [
   { value: 144, name: "JobSetUp16" },
 ];
 
-class DashboardLayout extends Component {
-  // classes = useStyles();
+const layout = [
+  { i: "a", x: 0, y: 0, w: 3, h: 4 },
+  { i: "b", x: 3, y: 0, w: 3, h: 4 },
+  { i: "c", x: 6, y: 0, w: 3, h: 4 },
+  { i: "d", x: 9, y: 0, w: 3, h: 4 },
+  { i: "e", x: 0, y: 5, w: 7, h: 8 },
+  { i: "f", x: 7, y: 5, w: 5, h: 8 },
+  { i: "g", x: 0, y: 13, w: 7, h: 8 },
+  { i: "h", x: 7, y: 13, w: 5, h: 8 },
+];
 
-  constructor(props, context) {
-    super(props, context);
-    console.log(props);
+const DynamicDashboard = (props) => {
+  const [widths, setWidth] = useState(0);
+  const [gauge, setGauge] = useState(0);
+  const [discrete, setDiscrete] = useState(0);
+  const [pie, setPie] = useState(0);
+  const [line, setLine] = useState(0);
+  const [pies, setPies] = useState(0);
+  const [grid, setGrid] = useState();
+  const elementRef = useRef(null);
 
-    this.onThemeChange = this.onThemeChange.bind(this);
-  }
+  useEffect(() => {
+    const widthh = document.querySelector(".layoutDiv").offsetWidth;
+    const gauge1 = document.querySelector(".gauge1").offsetWidth;
+    const discretes = document.querySelector(".discrete").offsetWidth;
+    const piee = document.querySelector(".pie").offsetWidth;
+    const lines = document.querySelector(".lines").offsetWidth;
+    const piess = document.querySelector(".pies").offsetWidth;
+    setWidth(widthh);
+    setGauge(gauge1);
+    setDiscrete(discretes);
+    setPie(piee);
+    setLine(lines);
+    setPies(piess);
+  }, [grid]);
+  console.log("div width", widths);
 
-  componentDidMount() {}
+  const handleLayoutChange = (layout) => {
+    //const lay = JSON.stringify(layout);
+    setGrid(layout);
+  };
 
-  onThemeChange(event) {
-    const { actions } = this.props;
+  const { session, t } = props;
+  console.log({ session, t });
 
-    const theme = event.target.checked
-      ? APP_CONSTANTS.THEME.DARK
-      : APP_CONSTANTS.THEME.DEFAULT;
-    actions.currentTheme(theme);
-  }
+  return (
+    <Page title="Dashboard">
+      <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <Typography variant="h4" sx={{ mb: 3 }}></Typography>
 
-  render() {
-    const { session, t } = this.props;
-    console.log({ session, t });
-    return (
-      <Page title="Dashboard">
-        <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
-          <Typography variant="h4" sx={{ mb: 3 }}></Typography>
-
-          <Grid container spacing={1}>
-            <Grid item xs={12} sm={6} md={2.4}>
+        <Grid container spacing={1}>
+          <GridLayout
+            className="layout"
+            layout={layout}
+            cols={12}
+            rowHeight={30}
+            width={1200}
+            onLayoutChange={handleLayoutChange}
+          >
+            <Grid key="a">
               {/* { <AppWidgetSummary title="Output Rate" total={"1,179 cph"}   /> } */}
 
               <Card
                 sx={{
-                  height: 135,
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
@@ -117,11 +150,12 @@ class DashboardLayout extends Component {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2.4}>
+            <Grid key="b">
               {/* {<AppWidgetSummary title="Total Cards" total={"891,625"} color="info" /> } */}
               <Card
                 sx={{
-                  height: 135,
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
@@ -141,10 +175,11 @@ class DashboardLayout extends Component {
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2.4} background="">
+            <Grid key="c" className="gauge1">
               <Card
                 sx={{
-                  height: 135,
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
@@ -155,14 +190,22 @@ class DashboardLayout extends Component {
                   Availability
                 </Typography>
 
-                {<Gauge perData="26.5" risk={"#FF6E76"}></Gauge>}
+                {
+                  <Gauge
+                    perData="26.5"
+                    risk={"#FF6E76"}
+                    gaugeWidth={gauge}
+                  ></Gauge>
+                }
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={2.4}>
+            <Grid key="d" className="layoutDiv">
               <Card
+                ref={elementRef}
                 sx={{
-                  height: 135,
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
@@ -172,76 +215,81 @@ class DashboardLayout extends Component {
                 >
                   Performance
                 </Typography>
-                {<Gauge perData="57" risk={"#FDDD60"}></Gauge>}
+                <Gauge
+                  perData="57"
+                  risk={"#FDDD60"}
+                  gaugeWidth={widths}
+                ></Gauge>
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={2.4}>
+
+            <Grid item key="e" className="discrete">
               <Card
                 sx={{
-                  height: 135,
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                <Typography
-                  sx={{ fontSize: 14, textAlign: "center" }}
-                  color="white"
-                >
-                  Quality
-                </Typography>
-                {<Gauge perData="98.8" risk={"#7CFFB2"}></Gauge>}
+                {<Discrete discreteWidth={discrete}></Discrete>}
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={7}>
-              <Card sx={{ background: "rgb(24, 22, 22)" }}>
-                {<Discrete></Discrete>}
-              </Card>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={5}>
-              <Card sx={{ background: "rgb(24, 22, 22)" }}>
+            <Grid item key="f" className="pie">
+              <Card
+                sx={{
+                  height: "inherit",
+                  width: "inherit",
+                  background: "rgb(24, 22, 22)",
+                }}
+              >
                 {
                   <Pie
                     title={"Cards by Card Setup"}
                     dataItem={dataListCardSetup}
+                    pieWidth={pie}
                   ></Pie>
                 }
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={7}>
+            <Grid item key="g" className="lines">
               <Card
                 sx={{
-                  height: "100%",
-                  width: "100%",
+                  height: "inherit",
+                  width: "inherit",
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<Line></Line>}
+                {<Line lineWidth={line}></Line>}
               </Card>
             </Grid>
 
-            <Grid item xs={12} sm={6} md={5}>
-              <Card sx={{ height: "100%", background: "rgb(24, 22, 22)" }}>
+            <Grid item key="h" className="pies">
+              <Card
+                sx={{
+                  height: "inherit",
+                  width: "inherit",
+                  background: "rgb(24, 22, 22)",
+                }}
+              >
                 {
                   <Pie
                     title="Cards by Job Setup"
                     dataItem={dataListJobSetup}
+                    pieWidth={pies}
                   ></Pie>
                 }
               </Card>
             </Grid>
-            <Grid item xs={12} sm={6} md={5}>
-              {" "}
-            </Grid>
-          </Grid>
-        </Container>
-      </Page>
-    );
-  }
-}
+          </GridLayout>
+        </Grid>
+      </Container>
+    </Page>
+  );
+};
 
-DashboardLayout.propTypes = {
+DynamicDashboard.propTypes = {
   session: PropTypes.shape({
     currentTheme: PropTypes.string.isRequired,
   }).isRequired,
@@ -263,7 +311,10 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const component = connect(mapStateToProps, mapDispatchToProps)(DashboardLayout);
-export default withTranslation(I18N_CONSTANTS.NAMESPACE.DashboardLayout)(
+const component = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DynamicDashboard);
+export default withTranslation(I18N_CONSTANTS.NAMESPACE.DynamicDashboard)(
   component
 );
