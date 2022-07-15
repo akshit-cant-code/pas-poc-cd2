@@ -33,19 +33,20 @@ import Discrete from "./Discrete";
 import NavBar from "../QueryPage/NavBar";
 import Form from "../QueryPage/Form";
 import EmptyPage from "../QueryPage/EmptyPage";
-import  DateRange  from "./DateRange";
-import {  addDays} from 'date-fns'
+import DateRange from "./DateRange";
+import { addDays } from "date-fns";
+import MenuItem from "@mui/material/MenuItem";
 
 class DynamicGraph extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       selectedCardType: "",
-      dataList:[],
-    timeRange:  {
-      "endDate" : addDays(new Date(), 1),
-       "StartDate": new Date()
-      }
+      dataList: [],
+      timeRange: {
+        endDate: addDays(new Date(), 1),
+        StartDate: new Date(),
+      },
     };
 
     this.onThemeChange = this.onThemeChange.bind(this);
@@ -56,28 +57,33 @@ class DynamicGraph extends Component {
     this.setState({ ...event.target.value });
   };
 
-  handleCallback = (childData) =>{      
+  handleCallback = (childData) => {
     var Tag = Point;
-    if("name" in childData){
-       //Tag=childData.Graph
-       var Query = childData.name.replace("$timeRange" ,'time > '+ this.state.timeRange.StartDate.toISOString()+' and time < '+ this.state.timeRange.endDate.toISOString() )
-       var Temp = {Graph: this.state.selectedCardType.label, query : Query}
-          fetch("https://localhost:7239/InfluxClient" ,{
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            method: "POST",
-            body: JSON.stringify(Temp)
-        }).then(data => {
-            this.setState({dataList:data});
-          });   
-          this.renderSelectedCard(this.state.selectedCardType);        
-    } 
-    else {
-        this.state.timeRange = childData;
+    if ("name" in childData) {
+      //Tag=childData.Graph
+      var Query = childData.name.replace(
+        "$timeRange",
+        "time > " +
+          this.state.timeRange.StartDate.toISOString() +
+          " and time < " +
+          this.state.timeRange.endDate.toISOString()
+      );
+      var Temp = { Graph: this.state.selectedCardType.label, query: Query };
+      fetch("https://localhost:7239/InfluxClient", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(Temp),
+      }).then((data) => {
+        this.setState({ dataList: data });
+      });
+      this.renderSelectedCard(this.state.selectedCardType);
+    } else {
+      this.state.timeRange = childData;
     }
-  }
+  };
 
   componentDidMount() {}
 
@@ -90,28 +96,35 @@ class DynamicGraph extends Component {
     actions.currentTheme(theme);
   }
 
-  
   state = {
     selectedCardType: "",
-    dataList:[],
-    timeRange:  {
-      "endDate" : addDays(new Date(), 1),
-       "StartDate": new Date()
-      }
+    dataList: [],
+    timeRange: {
+      endDate: addDays(new Date(), 1),
+      StartDate: new Date(),
+    },
   };
 
   render() {
     const { session, t } = this.props;
     return (
       <Nav>
-        <Container maxWidth="xl" style={{ paddingLeft: 0, paddingRight: 0 }}>
+        <Container maxWidth="xl" style={{ backgroundColor: "black" }}>
           <Typography variant="h4" sx={{ mb: 3 }}></Typography>
 
           <Grid container spacing={2}>
-            <Grid item xs={12}  sm={8} md={8} >
-             <DateRange parentCallback = {this.handleCallback}></DateRange>
+            <Grid
+              item
+              xs={12}
+              sm={12}
+              md={8}
+              style={{
+                paddingLeft: "37%",
+              }}
+            >
+              <DateRange parentCallback={this.handleCallback}></DateRange>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={12} md={4}>
               {this.renderCardSelector()}
             </Grid>
             <Grid item xs={8}>
@@ -119,26 +132,21 @@ class DynamicGraph extends Component {
                 sx={{
                   minHeight: "250px",
                   width: "100%",
-                  background: "rgb(24, 22, 22)",
+                  background: "#181b1f",
                 }}
               >
                 {this.renderSelectedCard(this.state.selectedCardType)}
               </Card>
             </Grid>
             <Grid item xs={12} sm={3} md={3}>
-              <Card>
-               
-                {<PanelTabs></PanelTabs>}
-           
-              </Card>         
+              <Card>{<PanelTabs></PanelTabs>}</Card>
             </Grid>
             <Grid item xs={12} sm={8} md={8}>
-            <NavBar></NavBar>
-          <Card sx={{  background:"rgb(24, 22, 22)"}}>           
-               {<Form parentCallback = {this.handleCallback}></Form> }
+              <NavBar></NavBar>
+              <Card sx={{ background: "#181b1f" }}>
+                {<Form parentCallback={this.handleCallback}></Form>}
               </Card>
-          </Grid>
-           
+            </Grid>
           </Grid>
         </Container>
       </Nav>
@@ -148,7 +156,11 @@ class DynamicGraph extends Component {
   renderCardSelector() {
     return (
       <Autocomplete
-        sx={{ width: 300 }}
+        sx={{
+          width: 300,
+          backgroundColor: "rgb(34, 37, 43)",
+          color: "rgb(204, 204, 220)",
+        }}
         options={graphsTypes}
         onChange={(event, newValue) => {
           this.setState({ selectedCardType: "" });
@@ -162,11 +174,15 @@ class DynamicGraph extends Component {
         renderOption={(props, option) => (
           <Box
             component="li"
-            sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+            sx={{
+              "& > img": { mr: 2, flexShrink: 0 },
+              backgroundColor: "rgb(34, 37, 43)",
+              color: "rgb(204, 204, 220)",
+            }}
             {...props}
           >
             <img loading="lazy" width="30" height="20" src={option.path} />
-            {option.label}
+            <MenuItem>{option.label}</MenuItem>
           </Box>
         )}
         renderInput={(params) => (
@@ -193,10 +209,16 @@ class DynamicGraph extends Component {
               {...params}
               label="Select Graph Types"
               variant="outlined"
+              color="secondary"
+              focused
               inputProps={{
                 ...params.inputProps,
                 autoComplete: "new-graphs",
-                style: { paddingLeft: "30px", textAlign: "left" }, // disable autocomplete and autofill
+                style: {
+                  paddingLeft: "30px",
+                  textAlign: "left",
+                  color: "rgb(204, 204, 220)",
+                }, // disable autocomplete and autofill
               }}
             />
           </div>
@@ -217,7 +239,13 @@ class DynamicGraph extends Component {
         graphs = <Bar dataList={this.state.dataList}></Bar>;
         break;
       case "Gauge":
-        graphs = <Gauge dataList={this.state.dataList} perData="26.5" risk={"#FF6E76"}></Gauge>;
+        graphs = (
+          <Gauge
+            dataList={this.state.dataList}
+            perData="26.5"
+            risk={"#FF6E76"}
+          ></Gauge>
+        );
         break;
       case "Point":
         graphs = <Point dataList={this.state.dataList}></Point>;
@@ -241,12 +269,20 @@ export function PanelTabs() {
   };
 
   return (
-    <Box>
+    <Box sx={{ background: "#181b1f" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="All" value="1" />
-            <Tab label="Override" value="2" />
+            <Tab
+              style={{ color: "rgba(204, 204, 220, 0.65)" }}
+              label="All"
+              value="1"
+            />
+            <Tab
+              style={{ color: "rgba(204, 204, 220, 0.65)" }}
+              label="Override"
+              value="2"
+            />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -261,39 +297,43 @@ export function PanelTabs() {
 export function AccordionMenu() {
   return (
     <div>
-      <Accordion>
+      <Accordion sx={{ background: "#181b1f", margin: "5px" }}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography>Panel Options</Typography>
+          <Typography sx={{ color: "white" }}>Panel Options</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: "white" }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
+      <Accordion sx={{ background: "#181b1f" }}>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
-          <Typography>Tooltip</Typography>
+          <Typography sx={{ color: "white" }}>Tooltip</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: "white" }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
           </Typography>
         </AccordionDetails>
       </Accordion>
-      <Accordion>
-        <AccordionSummary>
-          <Typography>Legend</Typography>
+      <Accordion sx={{ background: "#181b1f" }}>
+        <AccordionSummary
+          expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+          aria-controls="panel3a-content"
+          id="panel3a-header"
+        >
+          <Typography sx={{ color: "white" }}>Legend</Typography>
         </AccordionSummary>
       </Accordion>
     </div>

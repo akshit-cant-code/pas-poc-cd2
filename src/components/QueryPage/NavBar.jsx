@@ -5,31 +5,23 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useTabStyles = makeStyles({
   root: {
-    justifyContent: "center"
+    justifyContent: "center",
   },
   scroller: {
-    flexGrow: "0"
-  }
+    flexGrow: "0",
+  },
 });
 
 const TabsContainer = () => {
   const classes = useTabStyles();
 
-  const tabs = [
-    "Query",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-  ];
+  const tabs = ["Query", "", "", "", "", "", ""];
 
   const [active, setActive] = useState(tabs[0]);
 
   return (
     <Tabs
-      Style ={{right: '0',marginLeft: 'auto'}}
+      Style={{ right: "0", marginLeft: "auto" }}
       classes={{ root: classes.root, scroller: classes.scroller }}
       value={active}
       onChange={(event, newValue) => {
@@ -41,7 +33,12 @@ const TabsContainer = () => {
       scrollButtons={"on"}
     >
       {tabs.map((tab, index) => (
-        <Tab key={index} label={tab} value={tab} />
+        <Tab
+          style={{ fontFamily: "nunito", color: "white" }}
+          key={index}
+          label={tab}
+          value={tab}
+        />
       ))}
     </Tabs>
   );
@@ -55,4 +52,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar
+export default NavBar;

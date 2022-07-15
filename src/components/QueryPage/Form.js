@@ -17,7 +17,7 @@ import { padding } from "@mui/system";
 import Point from "../Graph/Point";
 const defaultValues = {
   name: "",
-  Graph: Point
+  Graph: Point,
 };
 const Form = (props) => {
   const [formValues, setFormValues] = useState(defaultValues);
@@ -39,33 +39,37 @@ const Form = (props) => {
     props.parentCallback(formValues);
   };
   return (
-    <form onSubmit={handleSubmit}  style = {{height:70/1 , padding:10}} >
-      <Grid container sx ={{height:900/1}} >
+    <form onSubmit={handleSubmit} style={{ height: 70 / 1, padding: 10 }}>
+      <Grid container sx={{ height: 900 / 1 }}>
         <Grid></Grid>
-        
-        <Grid item  xs={29} sm={10} md={10} sx ={{height:900/1}}  >
-          <TextField
-           InputLabelProps={{
-             style: { color: '#3f51b5' },
-             height:700,
-             input: {
-              color: "#3f51b5"
-            }
-          }}
-          inputProps={{ style: { fontFamily: 'nunito', color: '#3f51b5'}}}
 
+        <Grid item xs={29} sm={10} md={10} sx={{ height: 900 / 1 }}>
+          <TextField
+            InputLabelProps={{
+              style: { color: "white" },
+              height: 700,
+              input: {
+                color: "white",
+              },
+            }}
+            inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
             id="name-input"
             name="name"
             label="Query To Run"
             type="text"
             value={formValues.name}
             onChange={handleInputChange}
-            fullWidth          />
-        </Grid>    
-        <Grid  item  xs={29} sm={1} md={1}>
-        <Button variant="contained" color="primary" type="submit">
-          Submit
-        </Button>
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={29} sm={1} md={1}>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: "rgb(160, 5, 177)" }}
+            type="submit"
+          >
+            Submit
+          </Button>
         </Grid>
       </Grid>
     </form>

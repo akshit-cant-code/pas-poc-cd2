@@ -10,9 +10,9 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Tooltip from "@mui/material/Tooltip";
 import Switch from "@mui/material/Switch";
-import { PropTypes } from 'prop-types';
-import { APP_CONSTANTS } from '../../../constants';
-import Export from '../../Graph/Export'
+import { PropTypes } from "prop-types";
+import { APP_CONSTANTS } from "../../../constants";
+import Export from "../../Graph/Export";
 // import { useNavigate } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Grid } from "@mui/material";
@@ -23,7 +23,8 @@ const drawerWidth = 240;
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
+    backgroundColor: "black",
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -59,27 +60,28 @@ const AppBar = styled(MuiAppBar, {
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 0),
+
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
+  color: "black",
 }));
 
-const Nav = ({ onThemeChange, currentTheme, t,children }) => {
+const Nav = ({ onThemeChange, currentTheme, t, children }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
   const history = useHistory();
 
-   //const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleDrawerOpen = () => {
     setOpen(true);
   };
 
-  
   const navigate = () => {
-      let path = `/`; 
-      history.push(path);
+    let path = `/`;
+    history.push(path);
   };
 
   const handleDrawerClose = () => {
@@ -89,7 +91,7 @@ const Nav = ({ onThemeChange, currentTheme, t,children }) => {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" sx={{ background:"rgb(109, 32, 119)" }}>
+      <AppBar position="fixed" sx={{ background: "rgb(109, 32, 119)" }}>
         <Toolbar variant="dense">
           {/* <IconButton
             color="inherit"
@@ -105,38 +107,27 @@ const Nav = ({ onThemeChange, currentTheme, t,children }) => {
               <Typography variant="label" noWrap component="div">
                 Entrust
               </Typography>
-              
             </Grid>
-         
-            
+
             {/* <Tooltip>
         
             </Tooltip> */}
             <Grid item xs={3}>
-            <Export></Export>
-
+              <Export></Export>
             </Grid>
-             <Grid>
-            
-
-          <Tooltip title="Admin">
-           
-          <IconButton>
-            <AccountCircle sx={{ color: "#fff" }} />
-          </IconButton>
-          </Tooltip>
-          <Tooltip title="Logout">
-          <IconButton onClick={() => navigate("/")}>
-            <LogoutIcon sx={{ color: "#fff" }} />
-          </IconButton>
-          </Tooltip>
-          
-          
-          
-        </Grid>
+            <Grid>
+              <Tooltip title="Admin">
+                <IconButton>
+                  <AccountCircle sx={{ color: "#fff" }} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Logout">
+                <IconButton onClick={() => navigate("/")}>
+                  <LogoutIcon sx={{ color: "#fff" }} />
+                </IconButton>
+              </Tooltip>
             </Grid>
-            
-        
+          </Grid>
         </Toolbar>
       </AppBar>
       {/* <Drawer
@@ -178,14 +169,14 @@ const Nav = ({ onThemeChange, currentTheme, t,children }) => {
       </Main>
     </Box>
   );
-}
+};
 
 Nav.defaultProps = {};
 
 Nav.propTypes = {
   onThemeChange: PropTypes.func,
   currentTheme: PropTypes.string,
-  t: PropTypes.func
+  t: PropTypes.func,
 };
 
 export default Nav;
