@@ -185,6 +185,7 @@ class DynamicGraph extends Component {
 
           if (newValue != undefined) {
             this.setState({ selectedCardType: newValue });
+            this.setState({title:""})
           }
         }}
         value={this.state.graphTypes}
@@ -291,12 +292,12 @@ export function PanelTabs(props) {
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             <Tab
-              style={{ color: "rgba(204, 204, 220, 0.65)" }}
+              style={{ color: "white" }}
               label="All"
               value="1"
             />
             <Tab
-              style={{ color: "rgba(204, 204, 220, 0.65)" }}
+              style={{ color: "white" }}
               label="Override"
               value="2"
             />
@@ -305,10 +306,10 @@ export function PanelTabs(props) {
         <TabPanel value="1">
         <TextField
            InputLabelProps={{
-             style: { color: '#3f51b5' },
+             style: { color: 'white' },
              height:700,
              input: {
-              color: "#3f51b5"
+              color: "white"
             }
           }}
           inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
@@ -322,10 +323,10 @@ export function PanelTabs(props) {
            <br></br>
            <TextField      
            InputLabelProps={{
-             style: { color: '#3f51b5' },
+             style: { color: 'white' ,},
              height:900,
              input: {
-              color: "#3f51b5"
+              color: "white"
             }
           }}
           inputProps={{ style: { fontFamily: "nunito", color: "white" , wordWrap: "break-word"} }}
