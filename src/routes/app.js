@@ -1,5 +1,6 @@
 import { Home, Wildcards, Dashboard } from "../components";
 import DynamicGraph from "../components/Dashboard/DynamicGraph";
+import Alerts from "../components/Alert/Alerts";
 import { ROUTE_CONSTANTS, APP_CONSTANTS } from "../constants";
 
 const appRoutes = [
@@ -18,6 +19,12 @@ const appRoutes = [
   {
     path: ROUTE_CONSTANTS.DYNAMIC_GRAPH,
     component: DynamicGraph,
+    exact: true,
+    type: APP_CONSTANTS.ROUTE_TYPES.PUBLIC,
+  },
+  {
+    path: ROUTE_CONSTANTS.ALERTS,
+    component: Alerts,
     exact: true,
     type: APP_CONSTANTS.ROUTE_TYPES.PUBLIC,
   },

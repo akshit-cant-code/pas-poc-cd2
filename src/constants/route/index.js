@@ -14,5 +14,6 @@ const ROUTE_CONSTANTS = {
   },
   DASHBOARD: "/Dashboard",
   DYNAMIC_GRAPH: "/Dynamic_Graph",
+  ALERTS:"/Alerts"
 };
 export default ROUTE_CONSTANTS;
