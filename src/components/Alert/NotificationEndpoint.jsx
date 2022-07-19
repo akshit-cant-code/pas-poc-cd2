@@ -6,7 +6,7 @@ import Page from "../Dashboard/Page";
 class NotificationEndpoint extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {name: '',url:""};
+      this.state = {name: '',url:"",email:""};
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,7 +17,7 @@ class NotificationEndpoint extends React.Component {
     }
   
     handleSubmit(event) {
-           var Temp = { name : this.state.name,url:this.state.url}
+           var Temp = { name : this.state.name,url:this.state.url,email:this.state.email}
               fetch("https://localhost:7239/api/Database/NotificationEndpoint" ,{
                 headers: {
                   'Accept': 'application/json',
@@ -53,6 +53,11 @@ class NotificationEndpoint extends React.Component {
         <input type="text" value={this.state.url} onChange={(e) => this.setState({url: e.target.value})} />
         </label> 
         </div>
+        <div className="col-md-3">
+          <label>Email Addresses:
+            <textarea value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} /> 
+                   </label>
+                   </div>
        
        
                    </div>

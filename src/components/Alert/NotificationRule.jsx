@@ -6,7 +6,7 @@ import Page from "../Dashboard/Page";
 class NotificationRule extends React.Component {
     constructor(props) {
       super(props);
-      this.state = {name: '',endPointID:"",endpointsList:[]};
+      this.state = {name: '',endPointID:"",endpointsList:[],every:"",offset:"",conditionType:""};
   
       this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +37,7 @@ class NotificationRule extends React.Component {
     }
   
     handleSubmit(event) {
-           var Temp = { name : this.state.name,endPointID:this.state.endPointID}
+           var Temp = { name : this.state.name,endPointID:this.state.endPointID,every:this.state.every,offset:this.state.offset,conditionType:this.state.conditionType}
               fetch("https://localhost:7239/api/Database/NotificationRule" ,{
                 headers: {
                   'Accept': 'application/json',
@@ -73,6 +73,27 @@ class NotificationRule extends React.Component {
         <select value={this.state.type} onChange={(e) => this.setState({endPointID: e.target.value})}>
         <option value="Test">--Select Endpoint--</option>
         {this.state.endpointsList.map(d => (<option value={d.id}>{d.name}</option>))} 
+              
+            </select>
+        </label>
+        </div> 
+        <div className="col-md-3">
+          <label>Schedule Every:
+        <input type="text" value={this.state.every} onChange={(e) => this.setState({every: e.target.value})} />
+        </label> 
+        <label>Offset:
+        <input type="text" value={this.state.offset} onChange={(e) => this.setState({offset: e.target.value})} />
+        </label> 
+        </div>
+        <div className="col-md-3">
+        <label>Condition:
+        <select value={this.state.conditionType} onChange={(e) => this.setState({conditionType: e.target.value})}>
+        <option value="Test">--Select Condition--</option>
+        <option value="CRIT">Critical</option>
+              <option value="OK">OK</option>
+              <option value="INFO">Info</option>
+              <option value="WARN">Warning</option>
+              <option value="UNKNOWN">Unknown</option>
               
             </select>
         </label>
