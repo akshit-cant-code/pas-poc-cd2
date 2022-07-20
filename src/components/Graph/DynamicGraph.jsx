@@ -21,7 +21,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import Line from "../GraphTypes/Line/Line";
+import Line from "./Line";
 import Pie from "../GraphTypes/Pie/Pie";
 import Bar from "./Bar";
 import Gauge from "../GraphTypes/Gauge/Gauge";
@@ -36,20 +36,22 @@ import EmptyPage from "../QueryPage/EmptyPage";
 import DateRange from "./DateRange";
 import { addDays } from "date-fns";
 import MenuItem from "@mui/material/MenuItem";
+import CircularProgress from "@mui/material/CircularProgress";
 
 class DynamicGraph extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       selectedCardType: "",
-      dataList:[],
+      dataList: [],
       child: "",
-      QueryStat : null,
-    timeRange:  {
-      "endDate" : addDays(new Date(), 1),
-       "StartDate": new Date()
+      QueryStat: null,
+      timeRange: {
+        endDate: addDays(new Date(), 1),
+        StartDate: new Date(),
       },
-      title : "",
+      title: "",
+      loading: false,
     };
 
     this.onThemeChange = this.onThemeChange.bind(this);
@@ -63,6 +65,7 @@ class DynamicGraph extends Component {
   handleCallback = (childData) => {
     var Tag = Point;
     if ("name" in childData) {
+      this.setState({ loading: true });
       //Tag=childData.Graph
       var Query = childData.name.replace(
         "$timeRange",
@@ -82,21 +85,36 @@ class DynamicGraph extends Component {
       })
         .then((res) => res.json())
         .then((data) => {
+          this.setState({ dataList: data, loading: false });
+        });
+      this.renderSelectedCard(this.state.selectedCardType);
+    } else {
+      this.setState({ timeRange: childData });
+      let DateQuery = `select * from airSensors where time>'${childData.StartDate.toISOString()}' and time < '${childData.endDate.toISOString()}' group by *`;
+      let bodyData = {
+        Graph: this.state.selectedCardType.label,
+        query: DateQuery,
+      };
+      fetch("https://localhost:7239/api/InfluxClient", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(bodyData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
           this.setState({ dataList: data });
-          console.log(data);
-          console.log(data[0].data);
         });
       this.renderSelectedCard(this.state.selectedCardType);
     }
-    else {
-        this.setState({timeRange:childData})
-  }
-  }
+  };
 
-  SetTitle= (childData) => {
-    console.log(childData)
-    this.setState({title:childData}); 
-  }
+  SetTitle = (childData) => {
+    console.log(childData);
+    this.setState({ title: childData });
+  };
 
   componentDidMount() {}
 
@@ -111,22 +129,30 @@ class DynamicGraph extends Component {
 
   state = {
     selectedCardType: "",
-    dataList:[],
-    title:"",
-    timeRange:  {
-      "endDate" : addDays(new Date(), 1),
-       "StartDate": new Date()
-      }
+    dataList: [],
+    title: "",
+    timeRange: {
+      endDate: addDays(new Date(), 1),
+      StartDate: new Date(),
+    },
   };
 
   render() {
     const { session, t } = this.props;
     return (
       <Nav>
-        <Container maxWidth="xl" style={{ backgroundColor: "black" }}>
-          <Typography variant="h4" sx={{ mb: 3 }}></Typography>
+        <Container
+          maxWidth="xl"
+          style={{ backgroundColor: "black", height: "100%" }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ color: "rgb(204, 204, 220)", fontSize: "20px" }}
+          >
+            Graphs/Edit Pannel
+          </Typography>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid
               item
               xs={12}
@@ -134,6 +160,7 @@ class DynamicGraph extends Component {
               md={8}
               style={{
                 paddingLeft: "37%",
+                paddingTop: "2%",
               }}
             >
               <DateRange parentCallback={this.handleCallback}></DateRange>
@@ -149,15 +176,35 @@ class DynamicGraph extends Component {
                   background: "#181b1f",
                 }}
               >
+                {!this.state.selectedCardType && (
+                  <Typography
+                    variant="h4"
+                    sx={{
+                      color: "rgba(204, 204, 220, 0.65)",
+                      fontSize: "20px",
+                      paddingLeft: "40%",
+                      paddingTop: "15%",
+                    }}
+                  >
+                    No data in response
+                  </Typography>
+                )}
+
                 {this.renderSelectedCard(this.state.selectedCardType)}
+                {/* {this.state.loading && this.state.selectedCardType && (
+                  <CircularProgress />
+                )} */}
               </Card>
             </Grid>
             <Grid item xs={12} sm={3} md={3}>
               <Card>
-               
-                {<PanelTabs parentCallback = {this.SetTitle} title = {this.state.title}></PanelTabs>}
-           
-              </Card>         
+                {
+                  <PanelTabs
+                    parentCallback={this.SetTitle}
+                    title={this.state.title}
+                  ></PanelTabs>
+                }
+              </Card>
             </Grid>
             <Grid item xs={12} sm={8} md={8}>
               <NavBar></NavBar>
@@ -185,9 +232,14 @@ class DynamicGraph extends Component {
 
           if (newValue != undefined) {
             this.setState({ selectedCardType: newValue });
-            this.setState({title:""})
+            // this.setState({ title: "" });
           }
         }}
+        getOptionDisabled={(option) =>
+          option.label === "HeatMap" ||
+          option.label === "Bar" ||
+          option.label === "Gauge"
+        }
         value={this.state.graphTypes}
         getOptionLabel={(option) => option.label}
         renderOption={(props, option) => (
@@ -254,19 +306,38 @@ class DynamicGraph extends Component {
     switch (gTypes) {
       case "Line":
         let queryValue = this.state.child != "" ? this.state.dataList : [];
-        graphs = <Line dataList={queryValue}  title={this.state.title}></Line>;
+        graphs = <Line dataList={queryValue} title={this.state.title}></Line>;
         break;
       case "Bar":
-        graphs = <Bar dataList={this.state.dataList} title={this.state.title}></Bar>;
+        graphs = (
+          <Bar dataList={this.state.dataList} title={this.state.title}></Bar>
+        );
         break;
       case "Gauge":
-        graphs = <Gauge dataList={this.state.dataList} perData="26.5" risk={"#FF6E76"} title={this.state.title}></Gauge>;
+        graphs = (
+          <Gauge
+            dataList={this.state.dataList}
+            perData="26.5"
+            risk={"#FF6E76"}
+            title={this.state.title}
+          ></Gauge>
+        );
         break;
       case "Point":
-        graphs = <Point dataList={this.state.dataList} title={this.state.title}></Point>;
+        graphs = (
+          <Point
+            dataList={this.state.dataList}
+            title={this.state.title}
+          ></Point>
+        );
         break;
       case "HeatMap":
-        graphs = <HeatMap dataList={this.state.dataList} title={this.state.title}></HeatMap>;
+        graphs = (
+          <HeatMap
+            dataList={this.state.dataList}
+            title={this.state.title}
+          ></HeatMap>
+        );
         break;
       default:
         <EmptyPage></EmptyPage>;
@@ -274,8 +345,6 @@ class DynamicGraph extends Component {
 
     return graphs;
   }
-   
-
 }
 
 export function PanelTabs(props) {
@@ -284,60 +353,67 @@ export function PanelTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
-  
+
   return (
     <Box sx={{ background: "#181b1f" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab
-              style={{ color: "white" }}
-              label="All"
-              value="1"
-            />
-            <Tab
-              style={{ color: "white" }}
-              label="Override"
-              value="2"
-            />
+            <Tab style={{ color: "white" }} label="All" value="1" />
+            <Tab style={{ color: "white" }} label="Override" value="2" />
           </TabList>
         </Box>
         <TabPanel value="1">
-        <TextField
-           InputLabelProps={{
-             style: { color: 'white' },
-             height:700,
-             input: {
-              color: "white"
-            }
-          }}
-          inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
+          <TextField
+            InputLabelProps={{
+              style: { color: "white" },
+              height: 700,
+              input: {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                fontFamily: "nunito",
+                color: "white",
+                backgroundColor: "black",
+              },
+            }}
             id="name-input"
             label="Title"
-            onChange={(e)=>{props.parentCallback(e.target.value);}}
+            onChange={(e) => {
+              props.parentCallback(e.target.value);
+            }}
             type="text"
-            value= {props.title}
-            fullWidth          />
-           <br></br>
-           <br></br>
-           <TextField      
-           InputLabelProps={{
-             style: { color: 'white' ,},
-             height:900,
-             input: {
-              color: "white"
-            }
-          }}
-          inputProps={{ style: { fontFamily: "nunito", color: "white" , wordWrap: "break-word"} }}
+            value={props.title}
+            fullWidth
+          />
+          <br></br>
+          <br></br>
+          <TextField
+            InputLabelProps={{
+              style: { color: "white" },
+              height: 900,
+              input: {
+                color: "white",
+              },
+            }}
+            inputProps={{
+              style: {
+                fontFamily: "nunito",
+                color: "white",
+                wordWrap: "break-word",
+                backgroundColor: "black",
+              },
+            }}
             id="name-input"
             label="Description"
             type="text"
-            fullWidth 
-            multiline
+            fullWidth
+            // multiline
             rows={3}
             maxRows={Infinity}
-           /> 
+          />
         </TabPanel>
         <TabPanel value="2">Item Two</TabPanel>
       </TabContext>
@@ -442,9 +518,9 @@ export default withTranslation(I18N_CONSTANTS.NAMESPACE.DynamicGraph)(
   component
 );
 const graphsTypes = [
-  { label: "Bar", path: "/assets/images/barchart.svg" },
   { label: "Line", path: "/assets/images/Line.svg" },
-  { label: "Gauge", path: "/assets/images/Gauge.svg" },
   { label: "Point", path: "/assets/images/Line.png" },
+  { label: "Gauge", path: "/assets/images/Gauge.svg" },
+  { label: "Bar", path: "/assets/images/barchart.svg" },
   { label: "HeatMap", path: "/assets/images/HeatMap.svg" },
 ];

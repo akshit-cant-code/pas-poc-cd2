@@ -38,3 +38,17 @@
 .rs-picker-default:not(.rs-picker-disabled) .rs-picker-toggle-active {
   border: 2px solid rgb(160, 5, 177) !important;
 }
+
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+  color: rgb(204, 204, 220) !important;
+}
+
+.PrivateTabIndicator-root-35 {
+  height: 4px !important;
+  border-radius: 3px !important;
+}
+
+.MuiTab-wrapper-34 {
+  flex-direction: row !important;
+}

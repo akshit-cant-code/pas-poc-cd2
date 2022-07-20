@@ -1,70 +1,67 @@
-import React from 'react';
-import ReactEcharts from 'echarts-for-react';
+import React from "react";
+import ReactEcharts from "echarts-for-react";
+import { useEffect, useState } from "react";
 
+function Line(props) {
+  if (props == undefined || props.dataList[0] == undefined) return null;
+  const [title, SetTitle] = useState("Production Progress -All");
+  useEffect(() => {
+    if (!(props.title == "" || props.title == null)) SetTitle(props.title);
+  }, [props.title]);
+  console.log(title);
+  const line = {
+    title: {
+      text: title,
+      left: "center",
+      textStyle: {
+        color: "white",
+        fontSize: "12",
+      },
+    },
+    xAxis: [
+      {
+        type: "time",
+        data: props.dataList[0].time,
+        boundaryGap: false,
 
-function Line(props){
-  var title = 'Production Progress -All'
-  /*if(props.title!=""||props.title!=null){
-    console.log("title:"+props.title)
-       title = props.title;
-  }*/
-  console.log(title)
-    const line = {
-        title: {
-          text: {title},
-          left: 'center',
-          textStyle: {
-            color: 'white',
-            fontSize:"12"
-            }
-        },
-        xAxis: [{
-         type: "category",
-          data: [ '10/4','10/7','10/10','10/13','10/16','10/19','10/22','10/25','10/28'],
-          boundaryGap: false,
-    
-          axisLine: {
-            lineStyle: {
-              type: "solid",
-              width: 5,
-              color: 'green'
-            },
-            onZero: true
-          },
-          axisLabel: {
-            color: "white"
-          },
-          onZero: true
-        }],
-        yAxis: {
-          min: 0,
-          type: 'value',
-          axisLabel:{
-            color:"white"
-          }
-        },
-        series: [
-    
-          {
-            type: 'line',
-            showSymbol: false,
-            smooth: true,
-            color: "yellow",
+        axisLine: {
+          lineStyle: {
+            type: "solid",
             width: 5,
-            lineStyle:{
+            color: "green",
+          },
+          onZero: true,
+        },
+        axisLabel: {
+          color: "white",
+        },
+        onZero: true,
+      },
+    ],
+    yAxis: {
+      min: 0,
+      type: "value",
+      axisLabel: {
+        color: "white",
+      },
+    },
+    series: [
+      {
+        type: "line",
+        showSymbol: false,
+        smooth: true,
+        color: "yellow",
+        width: 5,
+        lineStyle: {
+          width: 6,
+        },
 
-              width:6
+        data: props.dataList[0].data,
+      },
+    ],
+  };
 
-            },
-          
-            data: [0, 1000,1000,1000,2000, 3000, 5000,5000,5200,7000,7200],
-    
-          }
-        ]
-    
-      };
-    
-    return <ReactEcharts  option={line}/>
+  return <ReactEcharts option={line} />;
 }
 
 export default Line;

@@ -17,7 +17,7 @@ import { padding } from "@mui/system";
 import Point from "../Graph/Point";
 const defaultValues = {
   name: "",
-  Graph: Line
+  Graph: Line,
 };
 const Form = (props) => {
   const [formValues, setFormValues] = useState(defaultValues);
@@ -52,19 +52,30 @@ const Form = (props) => {
                 color: "white",
               },
             }}
-            inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
+            inputProps={{
+              style: {
+                fontFamily: "nunito",
+                color: "white",
+              },
+            }}
             id="name-input"
             name="name"
             label="Query To Run"
             type="text"
             value={formValues.name}
             onChange={handleInputChange}
-            fullWidth          />
-        </Grid>   
-        <Grid  item  xs={9} sm={1} md={1} style={{padding:12/1}}>
-        <Button variant="contained" color="primary" type="submit" style = {{height: 20, backgroundColor: "rgb(160, 5, 177)" }}>
-          Submit
-        </Button>
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={9} sm={1} md={1} style={{ padding: 20 / 1 }}>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ height: 25, backgroundColor: "rgb(160, 5, 177)" }}
+          >
+            Submit
+          </Button>
         </Grid>
       </Grid>
     </form>
