@@ -14,5 +14,6 @@ const ROUTE_CONSTANTS = {
   },
   DASHBOARD: "/Dashboard",
   DynamicGraph: "/EditPanel",
+  DYNAMIC_GRAPH: "/Dynamic_Graph",
 };
 export default ROUTE_CONSTANTS;

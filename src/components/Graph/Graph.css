@@ -52,3 +52,38 @@
 .MuiTab-wrapper-34 {
   flex-direction: row !important;
 }
+#myProgress {
+  display: inline-block;
+  width: 100px;
+  background-color: #ddd;
+}
+
+#myBar {
+  height: 15px;
+  margin: 5px;
+  background: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.15) 105%,
+        rgba(255, 255, 255, 0.15) 145%,
+        rgba(255, 255, 255, 0.15) 175%
+      )
+      left/30px 30px repeat-x,
+    linear-gradient(to right, red 0%, yellow 35px, green 70px)
+      left/var(--p, 100%) fixed,
+    lightgray;
+}
+
+#myBar::before {
+  width: 34%;
+  height: 20px;
+  background-image: linear-gradient(to right, red, yellow);
+}
+
+.MuiDataGrid-columnHeaderTitle {
+  text-transform: capitalize;
+  color: rgb(110, 159, 255);
+}
+
+.MuiDataGrid-sortIcon {
+  color: rgb(110, 159, 255);
+}
