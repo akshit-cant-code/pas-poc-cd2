@@ -1,7 +1,7 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
-import { useEffect ,useState } from 'react';
+import { useEffect, useState } from "react";
 
 // Heatmap Data Feed section------------
 // const hours = [
@@ -342,65 +342,84 @@ const data = [
   return [item[1], item[0], item[2] || "-"];
 });
 
-  // end-----------
-function HeatMap(props){
-
-  const [title, SetTitle] = useState('Rejection Code Heatmap');
+// end-----------
+function HeatMap(props) {
+  console.log("heatprop", props);
+  const [title, SetTitle] = useState("Rejection Code Heatmap");
   useEffect(() => {
-    if(!(props.title==""||props.title==null))
-        SetTitle(props.title)
-}, [props.title]);
-    const heatMap = {
+    if (!(props.title == "" || props.title == null)) SetTitle(props.title);
+  }, [props.title]);
+  const heatMap = {
+    tooltip: {
+      position: "top",
+    },
+    title: {
+      top: 10,
+      left: "center",
+      text: title,
+      textStyle: {
+        color: "white",
+        fontSize: "12",
+      },
+    },
+    grid: {
+      height: "50%",
+      top: "10%",
+    },
+    xAxis: {
+      type: "category",
 
-        tooltip: {
-          position: "top"
+      axisLabel: {
+        color: "white",
+        formatter: function (value) {
+          return moment.unix(value).format("D/MM");
         },
-        title: {
-          top: 10,
-          left: 'center',
-          text: title
-        },
-        grid: {
-          height: "50%",
-          top: "10%"
-        },
-        xAxis: {
-          type: "category",
-          axisLabel: {
-            formatter: function(value){
-                    return moment.unix(value).format('D/MM');;
-            }},
-          data: hours,
-          splitArea: {
-            show: true
-          }
-        },
-        yAxis: {
-          type: "category",
-          data: days,
-          splitArea: {
-            show: true
-          }
-        },
-        visualMap: {
-          min: 0,
-          max: 100,
-          calculable: true,
-          orient: "horizontal",
-          left: "center",
-          bottom: "15%",
-          inRange: {
-            color: ["#010B13", "#343C19", "#676D20", "#999D26", "#CCCE2D", "#FFFF33"]
-          }
-        },
-        series: [
-          {
-            type: "heatmap",
-            data: data,
-          }
-        ]
-      };
-      return <ReactEcharts option={heatMap} />;
-
+      },
+      data: hours,
+      splitArea: {
+        show: true,
+      },
+    },
+    yAxis: {
+      type: "category",
+      data: days,
+      splitArea: {
+        show: true,
+      },
+      axisLabel: {
+        color: "white",
+      },
+    },
+    visualMap: {
+      min: 0,
+      max: 100,
+      calculable: true,
+      orient: "horizontal",
+      left: "center",
+      bottom: "15%",
+      inRange: {
+        color: [
+          "#010B13",
+          "#343C19",
+          "#676D20",
+          "#999D26",
+          "#CCCE2D",
+          "#FFFF33",
+        ],
+      },
+    },
+    series: [
+      {
+        type: "heatmap",
+        data: data,
+      },
+    ],
+  };
+  return (
+    <ReactEcharts
+      option={heatMap}
+      style={{ height: "300px", width: props.heatWidth }}
+    />
+  );
 }
 export default HeatMap;

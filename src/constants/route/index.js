@@ -13,7 +13,7 @@ const ROUTE_CONSTANTS = {
     UNAUTHORIZED: "/unauthorized",
   },
   DASHBOARD: "/Dashboard",
-  DynamicGraph: "/EditPanel",
+  DynamicGraphQuery: "/EditPanel",
   DYNAMIC_GRAPH: "/Dynamic_Graph",
 };
 export default ROUTE_CONSTANTS;

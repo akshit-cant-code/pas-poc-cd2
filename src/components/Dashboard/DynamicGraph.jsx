@@ -26,6 +26,27 @@ import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import Tooltip from "@mui/material/Tooltip";
 
+var pointChart = [
+  {
+    name: "Machine 1",
+    type: "scatter",
+    symbolSize: 5,
+    data: [["2022-06-29T06:04:17Z", 0.5212745327966313]],
+  },
+  {
+    name: "Machine 2",
+    type: "scatter",
+    symbolSize: 5,
+    data: [["2022-06-29T06:04:17Z", 0.5212745327966313]],
+  },
+  {
+    name: "Machine 3",
+    type: "scatter",
+    symbolSize: 5,
+    data: [["2022-06-29T06:04:17Z", 0.5212745327966313]],
+  },
+];
+
 var dataListCardSetup = [
   { value: 1048, name: "CardSetUp1" },
   { value: 735, name: "CardSetUp2" },
@@ -162,7 +183,7 @@ const DynamicGraph = (props) => {
                     background: "rgb(24, 22, 22)",
                   }}
                 >
-                  <Point pointWidth={point}></Point>
+                  <Point pointWidth={point} dataList={pointChart}></Point>
                 </Card>
               </Grid>
 

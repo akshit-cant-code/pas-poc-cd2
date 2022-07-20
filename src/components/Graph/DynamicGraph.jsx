@@ -38,7 +38,7 @@ import { addDays } from "date-fns";
 import MenuItem from "@mui/material/MenuItem";
 import CircularProgress from "@mui/material/CircularProgress";
 
-class DynamicGraph extends Component {
+class DynamicGraphQuery extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -491,7 +491,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
 
-DynamicGraph.propTypes = {
+DynamicGraphQuery.propTypes = {
   session: PropTypes.shape({
     currentTheme: PropTypes.string.isRequired,
   }).isRequired,
@@ -513,8 +513,11 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const component = connect(mapStateToProps, mapDispatchToProps)(DynamicGraph);
-export default withTranslation(I18N_CONSTANTS.NAMESPACE.DynamicGraph)(
+const component = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DynamicGraphQuery);
+export default withTranslation(I18N_CONSTANTS.NAMESPACE.DynamicGraphQuery)(
   component
 );
 const graphsTypes = [

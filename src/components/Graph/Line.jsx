@@ -62,7 +62,10 @@ function Line(props) {
   };
 
   return (
-    <ReactEcharts option={line} style={{ height: "300px", width: lineWidth }} />
+    <ReactEcharts
+      option={line}
+      style={{ height: "300px", width: props.lineWidth }}
+    />
   );
 }
 

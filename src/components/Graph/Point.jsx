@@ -3,6 +3,7 @@ import ReactEcharts from "echarts-for-react";
 import { useEffect, useState } from "react";
 
 function Point(props) {
+  console.log("pointpro", props);
   const [title, SetTitle] = useState("TotalDuration by D_MachID ");
   useEffect(() => {
     if (!(props.title == "" || props.title == null)) SetTitle(props.title);
@@ -12,13 +13,23 @@ function Point(props) {
       top: "10%",
       text: title,
       left: "center",
+      textStyle: {
+        color: "white",
+        fontSize: "12",
+      },
     },
     xAxis: {
       type: "time",
       scale: true,
+      axisLabel: {
+        color: "white",
+      },
     },
     yAxis: {
       scale: true,
+      axisLabel: {
+        color: "white",
+      },
     },
     grid: {
       top: "20%",
@@ -32,6 +43,10 @@ function Point(props) {
       right: "60%",
       top: "20%",
       orient: "vertical",
+      textStyle: {
+        color: "white",
+        fontSize: "10px",
+      },
       data: ["Machine 1", "Machine 2", "Machine 3"],
       formatter: (name) => {
         var value = point.series.filter((row) => row.name === name)[0].data;
@@ -68,6 +83,11 @@ function Point(props) {
     series: props.dataList,
   };
 
-  return <ReactEcharts option={point} />;
+  return (
+    <ReactEcharts
+      option={point}
+      style={{ height: "300px", width: props.pointWidth }}
+    />
+  );
 }
 export default Point;

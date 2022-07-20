@@ -89,7 +89,10 @@ function Bar(props) {
     ],
   };
   return (
-    <ReactEcharts option={bar} style={{ height: "300px", width: barWidth }} />
+    <ReactEcharts
+      option={bar}
+      style={{ height: "300px", width: props.barWidth }}
+    />
   );
 }
 export default Bar;
