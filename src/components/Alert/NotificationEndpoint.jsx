@@ -8,6 +8,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import MenuItem from "@mui/material/MenuItem";
+import Button from '@mui/material/Button';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material/styles';
 
 
 class NotificationEndpoint extends React.Component {
@@ -55,6 +60,7 @@ class NotificationEndpoint extends React.Component {
             }).then(res =>
               res.json())
               .then(data => {
+                this.getEndpoints();
                alert(data);
                
               });  
@@ -67,53 +73,85 @@ class NotificationEndpoint extends React.Component {
       return (
         <Page>
         <Nav>
+        <div align="center" styles={{borderBottom: '100px'}}>
+        <Box
+        
+      component="form"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+        border: 4,
+        height: 400,
+        width: 600,
+        borderColor: '#6d2077'
+      }}
+      noValidate
+      autoComplete="off"
+    >
         <form onSubmit={this.handleSubmit}>
-            <div className="col-md-12">
           
           <div className="col-md-3">
-          <label>Name:
-        <input type="text" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})} />
-        </label> 
+          <TextField
+          id="outlined-required"
+          label="Name"
+          size="small"
+          value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}
+        />
         </div>
         <div className="col-md-3">
-          <label>Url:
-        <input type="text" value={this.state.url} onChange={(e) => this.setState({url: e.target.value})} />
-        </label> 
+        <TextField
+          id="outlined-required"
+          label="Url"
+          size="small"
+          value={this.state.url} onChange={(e) => this.setState({url: e.target.value})}
+        />
         </div>
         <div className="col-md-3">
-          <label>Email Addresses:
-            <textarea value={this.state.email} onChange={(e) => this.setState({email: e.target.value})} /> 
-                   </label>
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Email"
+          multiline
+          maxRows={10}
+          value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}
+        />
                    </div>
-       
-       
-                   </div>
-                   <div><input type="submit" value="Create Endpoint"></input></div>
+                   <div align="center" style={{paddingTop: '20px'}}>
+        <Button type="submit" variant="contained"style = {{backgroundColor:'#6d2077'}} onClick={(e) => this.handleSubmit({e})}>
+        Create Notification Endpoint
+        </Button>
+        </div>
+                   
         </form>
+        </Box>
+        </div>
+        <br></br>
+
         <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 , border: 10}} aria-label="simple table">
         <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Status</TableCell>
-            <TableCell align="right">Type</TableCell>
-            <TableCell align="right">Method</TableCell>
-            <TableCell align="right">Url</TableCell>
+          <TableRow sx={{background: '#6d2077'}}>
+            <TableCell sx={{border: 2, fontWeight: 700, fontSize: 16, color: 'lightgrey'}}>Name</TableCell>
+            <TableCell align="right" sx={{border: 2, fontWeight: 700, fontSize: 16, color: 'lightgrey'}}>Status</TableCell>
+            <TableCell align="right" sx={{border: 2, fontWeight: 700, fontSize: 16, color: 'lightgrey'}}>Type</TableCell>
+            <TableCell align="right" sx={{border: 2, fontWeight: 700, fontSize: 16, color: 'lightgrey'}}>Method</TableCell>
+            <TableCell align="right" sx={{border: 2, fontWeight: 700, fontSize: 16, color: 'lightgrey'}}>Url</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {this.state.endpointsList.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{border: 1}}>
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.status}</TableCell>
-              <TableCell align="right">{row.type}</TableCell>
-              <TableCell align="right">{row.method}</TableCell>
-              <TableCell align="right">{row.url}</TableCell>
+              <TableCell align="right" sx={{border: 1}}>{row.status}</TableCell>
+              <TableCell align="right" sx={{border: 1}}>{row.type}</TableCell>
+              <TableCell align="right" sx={{border: 1}}>{row.method}</TableCell>
+              <TableCell align="right" sx={{border: 1}}>{row.url}</TableCell>
             </TableRow>
           ))}
         </TableBody>

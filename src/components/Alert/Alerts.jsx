@@ -7,6 +7,8 @@ import Check from "./Check";
 import Paper from "@material-ui/core/Paper";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material/styles';
+import './style.css';
 
 class Alerts extends React.Component {
     constructor(props) {
@@ -17,24 +19,28 @@ class Alerts extends React.Component {
     handle_change = (value) => {
       this.setState({ value })
       
-  }
-  
+  } 
     render() {
+      const darkTheme = createTheme({
+      palette: {
+      mode: 'dark',
+      },
+      });
       let content_array = [<Check></Check>,<NotificationEndpoint></NotificationEndpoint>, <NotificationRule></NotificationRule>, <h1>Third Tab</h1>];
       return (
         <Page>
         <Nav>
-          
+        {/* <ThemeProvider theme={darkTheme}> */}
         <Tabs value={this.state.value} onChange={(e, v) => { this.handle_change(v) }} indicatorColor="primary"
                     textColor="primary" centered>
-                    <Tab value='1' label='CHECKS'></Tab>
-                    <Tab value='2' label='NOTIFICATION ENDPOINTS'></Tab>
-                    <Tab value='3' label='NOTIFICATION RULE'></Tab>
+                    <Tab value='1' label='CHECKS' style={{border: 2, fontWeight: 700, fontSize: 16, color: 'grey'}}></Tab>
+                    <Tab value='2' label='NOTIFICATION ENDPOINTS'  style={{border: 2, fontWeight: 700, fontSize: 16, color: 'grey'}}></Tab>
+                    <Tab value='3' label='NOTIFICATION RULE'  style={{border: 2, fontWeight: 700, fontSize: 16, color: 'grey'}}></Tab>
                 </Tabs>
                 <Paper>
                     {content_array[this.state.value - 1]}
                 </Paper>
-       
+               {/* // </ThemeProvider> */}
         </Nav>
         </Page>
       );
