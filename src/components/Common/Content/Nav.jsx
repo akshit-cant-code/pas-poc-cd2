@@ -24,6 +24,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(0),
+    backgroundColor: "black",
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -59,10 +60,12 @@ const AppBar = styled(MuiAppBar, {
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  padding: theme.spacing(0, 1),
+  padding: theme.spacing(0, 0),
+
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
+  color: "black",
 }));
 
 const Nav = ({ onThemeChange, currentTheme, t, children }) => {
@@ -170,9 +173,10 @@ const Nav = ({ onThemeChange, currentTheme, t, children }) => {
 
 Nav.defaultProps = {};
 
-// Nav.propTypes = {
-//   onThemeChange: PropTypes.func.isRequired,
-//   currentTheme: PropTypes.string.isRequired,
-//   t: PropTypes.func.isRequired,
-// };
+Nav.propTypes = {
+  onThemeChange: PropTypes.func,
+  currentTheme: PropTypes.string,
+  t: PropTypes.func,
+};
+
 export default Nav;

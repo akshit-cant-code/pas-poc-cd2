@@ -5,7 +5,6 @@ import * as React from "react";
 import "./Graph.css";
 
 function ProgressBar(props) {
-  console.log("props", props);
   var progress = props.progress;
   return (
     <div>

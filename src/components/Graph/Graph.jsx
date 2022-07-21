@@ -13,7 +13,6 @@ import Line from './Line'
 import Discrete from './Discrete'
 import * as echarts from 'echarts';
 
-import Table from '../Table/Table';
 import Export from './Export'
 
 
@@ -81,7 +80,7 @@ const Graph = (props) => {
       <div className="flex-container">
         <div>
           <p className='center'>Chip Perso TImes By D_MarchID</p>
-          <Table></Table>
+          {/* <Table></Table> */}
         </div>
       </div>
 

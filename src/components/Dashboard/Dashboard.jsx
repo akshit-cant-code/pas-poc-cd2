@@ -42,7 +42,7 @@ class Dashboard extends Component {
           currentTheme={session.currentTheme}
           t={t}
         >
-          <DashboardLayout />
+          <DynamicDashboard />
         </Nav>
       </div>
     );

@@ -23,6 +23,35 @@
   font-weight: bold;
 }
 
+.rs-picker-toggle-textbox {
+  background-color: rgb(34, 37, 43) !important;
+  color: rgb(204, 204, 220) !important;
+}
+
+.rs-picker-default .rs-btn,
+.rs-picker-default .rs-picker-toggle {
+  background-color: rgb(34, 37, 43) !important;
+  color: rgb(204, 204, 220) !important;
+  border: 2px solid rgb(160, 5, 177) !important;
+}
+
+.rs-picker-default:not(.rs-picker-disabled) .rs-picker-toggle-active {
+  border: 2px solid rgb(160, 5, 177) !important;
+}
+
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value,
+.rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+  color: rgb(204, 204, 220) !important;
+}
+
+.PrivateTabIndicator-root-35 {
+  height: 4px !important;
+  border-radius: 3px !important;
+}
+
+.MuiTab-wrapper-34 {
+  flex-direction: row !important;
+}
 #myProgress {
   display: inline-block;
   width: 100px;
