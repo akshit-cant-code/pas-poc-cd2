@@ -374,7 +374,6 @@ export function PanelTabs(props) {
             }}
             inputProps={{
               style: {
-                fontFamily: "nunito",
                 color: "white",
                 backgroundColor: "black",
               },
@@ -400,7 +399,6 @@ export function PanelTabs(props) {
             }}
             inputProps={{
               style: {
-                fontFamily: "nunito",
                 color: "white",
                 wordWrap: "break-word",
                 backgroundColor: "black",
