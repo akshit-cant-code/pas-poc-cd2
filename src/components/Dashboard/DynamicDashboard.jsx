@@ -284,7 +284,13 @@ const DynamicDashboard = (props) => {
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<Line lineWidth={line} dataList={lineChart}></Line>}
+                {
+                  <Line
+                    lineWidth={line}
+                    dataList={lineChart}
+                    title="Production Progress -All"
+                  ></Line>
+                }
               </Card>
             </Grid>
 

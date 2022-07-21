@@ -65,6 +65,7 @@ class DynamicGraphQuery extends Component {
   handleCallback = (childData) => {
     var Tag = Point;
     if ("name" in childData) {
+      this.setState({ child: childData.name });
       this.setState({ loading: true });
       //Tag=childData.Graph
       var Query = childData.name.replace(
@@ -89,25 +90,27 @@ class DynamicGraphQuery extends Component {
         });
       this.renderSelectedCard(this.state.selectedCardType);
     } else {
-      this.setState({ timeRange: childData });
-      let DateQuery = `select * from airSensors where time>'${childData.StartDate.toISOString()}' and time < '${childData.endDate.toISOString()}' group by *`;
-      let bodyData = {
-        Graph: this.state.selectedCardType.label,
-        query: DateQuery,
-      };
-      fetch("https://localhost:7239/api/InfluxClient", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-        body: JSON.stringify(bodyData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          this.setState({ dataList: data });
-        });
-      this.renderSelectedCard(this.state.selectedCardType);
+      if (this.state.child != "") {
+        this.setState({ timeRange: childData });
+        let DateQuery = `select * from airSensors where time>'${childData.StartDate.toISOString()}' and time < '${childData.endDate.toISOString()}' group by *`;
+        let bodyData = {
+          Graph: this.state.selectedCardType.label,
+          query: DateQuery,
+        };
+        fetch("https://localhost:7239/api/InfluxClient", {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          method: "POST",
+          body: JSON.stringify(bodyData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            this.setState({ dataList: data });
+          });
+        this.renderSelectedCard(this.state.selectedCardType);
+      }
     }
   };
 

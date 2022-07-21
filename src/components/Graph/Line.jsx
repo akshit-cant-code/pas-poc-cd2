@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function Line(props) {
   if (props == undefined || props.dataList[0] == undefined) return null;
-  const [title, SetTitle] = useState("Production Progress -All");
+  const [title, SetTitle] = useState(props.title);
   useEffect(() => {
     if (!(props.title == "" || props.title == null)) SetTitle(props.title);
   }, [props.title]);

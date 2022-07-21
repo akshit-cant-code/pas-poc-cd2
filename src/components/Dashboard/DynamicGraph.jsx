@@ -204,7 +204,11 @@ const DynamicGraph = (props) => {
                     background: "rgb(24, 22, 22)",
                   }}
                 >
-                  <Point pointWidth={point} dataList={pointChart}></Point>
+                  <Point
+                    pointWidth={point}
+                    dataList={pointChart}
+                    title="Production Progress -All"
+                  ></Point>
                 </Card>
               </Grid>
 
