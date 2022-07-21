@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function Point(props) {
   console.log("pointpro", props);
-  const [title, SetTitle] = useState("TotalDuration by D_MachID ");
+  const [title, SetTitle] = useState(props.title);
   useEffect(() => {
     if (!(props.title == "" || props.title == null)) SetTitle(props.title);
   }, [props.title]);

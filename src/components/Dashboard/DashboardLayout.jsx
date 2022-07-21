@@ -275,7 +275,12 @@ class DashboardLayout extends Component {
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<Line dataList={lineChart}></Line>}
+                {
+                  <Line
+                    dataList={lineChart}
+                    title="Production Progress -All"
+                  ></Line>
+                }
               </Card>
             </Grid>
 
