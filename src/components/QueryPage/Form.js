@@ -54,7 +54,6 @@ const Form = (props) => {
             }}
             inputProps={{
               style: {
-                fontFamily: "nunito",
                 color: "white",
               },
             }}

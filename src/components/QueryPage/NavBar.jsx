@@ -34,7 +34,7 @@ const TabsContainer = () => {
     >
       {tabs.map((tab, index) => (
         <Tab
-          style={{ fontFamily: "nunito", color: "white" }}
+          style={{ color: "white" }}
           icon={
             <img
               style={{ marginRight: "5px", marginTop: "5px" }}
