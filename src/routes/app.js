@@ -3,7 +3,7 @@ import DynamicGraph from "../components/Dashboard/DynamicGraph";
 import Alerts from "../components/Alert/Alerts";
 import { ROUTE_CONSTANTS, APP_CONSTANTS } from "../constants";
 import DynamicGraphQuery from "../components/Graph/DynamicGraph";
-import DynamicGraph from "../components/Dashboard/DynamicGraph";
+
 const appRoutes = [
   {
     path: ROUTE_CONSTANTS.ROOT,
