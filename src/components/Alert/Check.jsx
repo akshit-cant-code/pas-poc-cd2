@@ -150,7 +150,7 @@ class Check extends React.Component {
               <MenuItem value="lesser"> Lesser</MenuItem>
         </TextField>
       
-            <TextField
+        <TextField
           id="outlined-required"
           label="Value"
           defaultValue="0"
@@ -162,6 +162,7 @@ class Check extends React.Component {
         <TextField
           id="outlined-multiline-flexible"
           label="Query"
+          style={{width: 460}}
           multiline
           maxRows={4}
           value={this.state.query} onChange={(e) => this.setState({query: e.target.value})}

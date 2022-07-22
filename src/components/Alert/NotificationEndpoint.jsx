@@ -98,6 +98,7 @@ class NotificationEndpoint extends React.Component {
           id="outlined-required"
           label="Name"
           size="small"
+          style={{width: 460}}
           value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}
         />
         </div>
@@ -106,6 +107,7 @@ class NotificationEndpoint extends React.Component {
           id="outlined-required"
           label="Url"
           size="small"
+          style={{width: 460}}
           value={this.state.url} onChange={(e) => this.setState({url: e.target.value})}
         />
         </div>
@@ -114,6 +116,7 @@ class NotificationEndpoint extends React.Component {
           id="outlined-multiline-flexible"
           label="Email"
           multiline
+          style={{width: 460}}
           maxRows={10}
           value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}
         />
