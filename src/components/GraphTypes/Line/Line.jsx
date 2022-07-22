@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 function Line(props) {
   if (props == undefined || props.dataList[0] == undefined) return null;
-  const [title, SetTitle] = useState(props.title);
+  const [title, SetTitle] = useState("Production Progress -All");
   useEffect(() => {
     if (!(props.title == "" || props.title == null)) SetTitle(props.title);
   }, [props.title]);
@@ -61,12 +61,7 @@ function Line(props) {
     ],
   };
 
-  return (
-    <ReactEcharts
-      option={line}
-      style={{ height: "300px", width: props.lineWidth }}
-    />
-  );
+  return <ReactEcharts option={line} />;
 }
 
 export default Line;

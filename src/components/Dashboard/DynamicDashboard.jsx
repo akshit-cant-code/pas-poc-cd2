@@ -19,6 +19,29 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridLayout from "react-grid-layout";
 import "./ReactGrid.css";
 
+var lineChart = [
+  {
+    time: [
+      "2022-06-29T06:04:17Z",
+      "2022-06-29T06:04:27Z",
+      "2022-06-29T06:04:37Z",
+      "2022-06-29T06:04:47Z",
+      "2022-06-29T06:04:57Z",
+      "2022-06-29T06:05:07Z",
+      "2022-06-29T06:05:17Z",
+      "2022-06-29T06:05:27Z",
+      "2022-06-29T06:05:37Z",
+      "2022-06-29T06:05:47Z",
+    ],
+    data: [
+      35.430646915068834, 155.47021040777319, 155.51222518750644,
+      295.47587823787097, 295.434295555617794, 395.427018225305936,
+      550.42988367406285, 550.412719856153885, 850.39156010364627,
+      850.41648293131611, 250.43701384186763, 250.416667779163659,
+    ],
+  },
+];
+
 var dataListCardSetup = [
   { value: 1048, name: "CardSetUp1" },
   { value: 735, name: "CardSetUp2" },
@@ -261,7 +284,13 @@ const DynamicDashboard = (props) => {
                   background: "rgb(24, 22, 22)",
                 }}
               >
-                {<Line lineWidth={line}></Line>}
+                {
+                  <Line
+                    lineWidth={line}
+                    dataList={lineChart}
+                    title="Production Progress -All"
+                  ></Line>
+                }
               </Card>
             </Grid>
 

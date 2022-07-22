@@ -1,11 +1,15 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
-
-function Bar({ barWidth }) {
+import { useEffect, useState } from "react";
+function Bar(props) {
+  const [title, SetTitle] = useState("Rejects By Machine");
+  useEffect(() => {
+    if (!(props.title == "" || props.title == null)) SetTitle(props.title);
+  }, [props.title]);
   const bar = {
     color: ["#3398DB", "#5528DB", "#ff00DB", "#3300DB", "#de3423"],
     title: {
-      text: "Rejects By Machine",
+      text: title,
       left: "center",
       textStyle: {
         color: "white",
@@ -85,7 +89,10 @@ function Bar({ barWidth }) {
     ],
   };
   return (
-    <ReactEcharts option={bar} style={{ height: "300px", width: barWidth }} />
+    <ReactEcharts
+      option={bar}
+      style={{ height: "300px", width: props.barWidth }}
+    />
   );
 }
 export default Bar;

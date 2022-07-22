@@ -26,6 +26,48 @@ import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
 import Tooltip from "@mui/material/Tooltip";
 
+var pointChart = [
+  {
+    name: "Machine 1",
+    type: "scatter",
+    symbolSize: 5,
+    data: [
+      ["2022-06-29T06:04:17Z", 0.5212745327966313],
+      ["2022-06-25T07:04:17Z", 0.7212745327966313],
+      ["2022-06-20T07:04:17Z", 0.2212745327966313],
+      ["2022-06-23T07:04:17Z", 0.3452745327966313],
+      ["2022-06-26T07:04:17Z", 0.8712745327966313],
+      ["2022-06-19T07:04:17Z", 0.5812745327966313],
+    ],
+  },
+  {
+    name: "Machine 2",
+    type: "scatter",
+    symbolSize: 5,
+    data: [
+      ["2022-06-29T06:04:17Z", 0.5212745327966313],
+      ["2022-06-20T03:04:17Z", 0.8212745327966313],
+      ["2022-06-23T07:04:17Z", 0.612745327966313],
+      ["2022-06-15T07:04:17Z", 0.7212745327966313],
+      ["2022-06-21T07:04:17Z", 0.4312745327966313],
+      ["2022-06-05T07:04:17Z", 0.9712745327966313],
+    ],
+  },
+  {
+    name: "Machine 3",
+    type: "scatter",
+    symbolSize: 5,
+    data: [
+      ["2022-06-29T06:04:17Z", 0.5212745327966313],
+      ["2022-06-19T06:04:17Z", 0.1212745327966313],
+      ["2022-06-22T07:04:17Z", 0.4452745327966313],
+      ["2022-06-25T07:04:17Z", 0.5212745327966313],
+      ["2022-06-23T07:04:17Z", 0.6212745327966313],
+      ["2022-06-24T07:04:17Z", 0.8952745327966313],
+    ],
+  },
+];
+
 var dataListCardSetup = [
   { value: 1048, name: "CardSetUp1" },
   { value: 735, name: "CardSetUp2" },
@@ -162,7 +204,11 @@ const DynamicGraph = (props) => {
                     background: "rgb(24, 22, 22)",
                   }}
                 >
-                  <Point pointWidth={point}></Point>
+                  <Point
+                    pointWidth={point}
+                    dataList={pointChart}
+                    title="Production Progress -All"
+                  ></Point>
                 </Card>
               </Grid>
 

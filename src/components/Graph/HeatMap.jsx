@@ -1,6 +1,8 @@
 import React from "react";
 import ReactEcharts from "echarts-for-react";
 import moment from "moment";
+import { useEffect, useState } from "react";
+
 // Heatmap Data Feed section------------
 // const hours = [
 //     1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30
@@ -341,14 +343,20 @@ const data = [
 });
 
 // end-----------
-function HeatMap({ heatWidth }) {
+function HeatMap(props) {
+  console.log("heatprop", props);
+  const [title, SetTitle] = useState("Rejection Code Heatmap");
+  useEffect(() => {
+    if (!(props.title == "" || props.title == null)) SetTitle(props.title);
+  }, [props.title]);
   const heatMap = {
     tooltip: {
       position: "top",
     },
     title: {
+      top: 10,
       left: "center",
-      text: "Rejection Code Heatmap",
+      text: title,
       textStyle: {
         color: "white",
         fontSize: "12",
@@ -356,10 +364,11 @@ function HeatMap({ heatWidth }) {
     },
     grid: {
       height: "50%",
-      top: "15%",
+      top: "10%",
     },
     xAxis: {
       type: "category",
+
       axisLabel: {
         color: "white",
         formatter: function (value) {
@@ -387,7 +396,7 @@ function HeatMap({ heatWidth }) {
       calculable: true,
       orient: "horizontal",
       left: "center",
-      bottom: "5%",
+      bottom: "15%",
       inRange: {
         color: [
           "#010B13",
@@ -409,7 +418,7 @@ function HeatMap({ heatWidth }) {
   return (
     <ReactEcharts
       option={heatMap}
-      style={{ height: "300px", width: heatWidth }}
+      style={{ height: "300px", width: props.heatWidth }}
     />
   );
 }
