@@ -12,7 +12,7 @@
 
     }
 
-    &-post-container{
+    &-post-container {
         width: 90%;
     }
 
@@ -24,7 +24,7 @@
         height: 10vh;
     }
 
-    &-head-title{
+    &-head-title {
         width: 40px;
     }
 
@@ -33,7 +33,7 @@
         font-size: 12px !important;
         padding-left: 1%;
         display: flex;
-        justify-content: flex-start !important;
+        justify-content: flex-start;
         overflow: hidden;
     }
 
@@ -81,6 +81,32 @@
     }
 
     &-row-content {
-        height: 30vh;
+        height: 55px;
+        border-bottom: 1px solid #dfe7eb;
+    }
+
+    &-required-field {
+        background-color: #5dbb5d;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    &-available-field {
+        background-color: #e9ecef;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    &-action-buttons {
+        width: 95% !important;
+    }
+
+    &-save-btn {
+        width: 70px !important;
+    }
+
+    &-shift-text {
+        padding: 0%;
+        width: 63px;
     }
 }
