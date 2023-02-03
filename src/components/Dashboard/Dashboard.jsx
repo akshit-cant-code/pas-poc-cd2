@@ -5,12 +5,9 @@ import { PropTypes } from "prop-types";
 import { withTranslation } from "react-i18next";
 import { sessionAction } from "../../redux/actions";
 import { APP_CONSTANTS, I18N_CONSTANTS } from "../../constants";
-import DashboardLayout from "./DashboardLayout";
-import ReactGrid from "./ReactGrid";
-import DynamicDashboard from "./DynamicDashboard";
-import DynamicGraph from "./DynamicGraph";
-
 import Nav from "../Common/Content/Nav";
+import NewDashboard from "../ProductionAnalytics/DashboardNew";
+
 
 class Dashboard extends Component {
   constructor(props, context) {
@@ -36,14 +33,9 @@ class Dashboard extends Component {
     const { session, t } = this.props;
     console.log(session.currentTheme);
     return (
-      <div className="pASUI" style={{ background: "black" }}>
-        <Nav
-          onThemeChange={this.onThemeChange}
-          currentTheme={session.currentTheme}
-          t={t}
-        >
-          <DashboardLayout />
-        </Nav>
+      <div className="pASUI">
+
+        <NewDashboard/>
       </div>
     );
   }

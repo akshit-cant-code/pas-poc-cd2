@@ -1,0 +1,86 @@
+.machine-tab {
+    &-overview {
+        padding: 1.25rem;
+        min-height: 506px;
+    }
+
+    &-container {
+        border: 1px solid #dfe7eb;
+        border-bottom-left-radius: 4px;
+        border-top-right-radius: 4px;
+        width: 90%;
+
+    }
+
+    &-post-container{
+        width: 90%;
+    }
+
+    &-table-head {
+        background-color: #e6ecef;
+        border-bottom: 1px solid #dfe7eb;
+        display: flex;
+        margin: 0%;
+        height: 10vh;
+    }
+
+    &-head-title{
+        width: 40px;
+    }
+
+    &-title {
+        font-family: Gotham, sans-serif;
+        font-size: 12px !important;
+        padding-left: 1%;
+        display: flex;
+        justify-content: flex-start !important;
+        overflow: hidden;
+    }
+
+    &-table-head-col {
+        border-right: 1px solid #dfe7eb;
+    }
+
+    &-center-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &-flex-start-text {
+        display: flex;
+        align-items: center;
+    }
+
+    &-row {
+        margin: 0%;
+    }
+
+    &-sort-icon {
+        width: 18px !important;
+        height: 18px !important;
+        padding: 0%;
+    }
+
+    &-edit-icon {
+        background-color: #456bd1 !important;
+        min-width: 20px !important;
+        height: 20px;
+    }
+
+    &-revoke-icon {
+        background-color: #f9777f !important;
+        min-width: 20px !important;
+        height: 20px;
+    }
+
+    &-remove-icon {
+        background-color: #f9777f !important;
+        min-width: 20px !important;
+        height: 20px;
+    }
+
+    &-row-content {
+        height: 30vh;
+    }
+}

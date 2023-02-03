@@ -19,6 +19,7 @@ import i18n from './i18n';
 
 import defaultThemeVariables from './styles/themes/_default.module.scss';
 import darkThemeVariables from './styles/themes/_dark.module.scss';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const { ScrollRestoration } = Helpers;
 
