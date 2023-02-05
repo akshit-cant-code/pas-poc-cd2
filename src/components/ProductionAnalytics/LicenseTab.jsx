@@ -10,7 +10,7 @@ const LicenseTab = () => {
     return (
         <div className="license-tab-overview">
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         License Server IP
                     </Typography>
@@ -21,7 +21,7 @@ const LicenseTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Product Key
                     </Typography>
@@ -32,7 +32,7 @@ const LicenseTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         License edition
                     </Typography>

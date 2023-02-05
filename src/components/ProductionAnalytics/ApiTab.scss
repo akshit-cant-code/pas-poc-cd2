@@ -1,0 +1,85 @@
+.api-tab {
+    &-overview {
+        width: 95%;
+        height: 100vh;
+        border: 1px solid #eae5e5;
+        margin: 2%;
+        margin-left: 2%;
+
+    }
+
+    &-header {
+        display: flex;
+        background-color: rgba(221, 226, 246, 0.9607843137);
+        height: 35px;
+        margin: 0%;
+    }
+
+    &-header-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-right: 1px solid #bab6b6;
+        padding: 0% !important;
+
+        &:hover {
+            background-color: #ddd;
+            cursor: pointer;
+        }
+    }
+
+    &-header-content-selected {
+        background-color: #fff;
+        border-bottom: 1px solid #bab6b6;
+    }
+
+    &-title {
+        font-size: 16px !important;
+        font-weight: bold !important;
+        padding-bottom: 1%;
+    }
+
+    &-content-overview {
+        width: 85%;
+    }
+
+    &-input-field {
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        height: 2rem;
+        margin-right: 20px;
+    }
+
+    &-view-button {
+        height: 2rem;
+        border-radius: 0px !important;
+        width: 35px;
+        margin-right: 1% !important;
+    }
+
+    &-reset-button {
+        height: 2rem;
+        border-radius: 0px !important;
+        width: 70px;
+        margin-right: 1% !important;
+    }
+
+    &-btn-colur {
+        color: #fff;
+    }
+
+    &-head-title {
+        width: 85px;
+        padding: 0px;
+    }
+
+    &-head-title-1 {
+        width: 90px;
+        padding: 0px;
+    }
+
+    &-first-info-container {
+        width: 90%;
+        padding-bottom: 1%;
+    }
+}

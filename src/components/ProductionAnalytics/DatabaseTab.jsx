@@ -10,7 +10,7 @@ const DatabaseTab = () => {
     return (
         <div className="license-tab-overview">
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Influx server host
                     </Typography>
@@ -21,7 +21,7 @@ const DatabaseTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Influx server port
                     </Typography>
@@ -32,7 +32,7 @@ const DatabaseTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Use TLS
                     </Typography>
@@ -43,7 +43,7 @@ const DatabaseTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Token
                     </Typography>

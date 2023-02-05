@@ -1,4 +1,7 @@
 .production-analytics {
+    body {
+        font: Gotham, sans-serif !important;
+    }
     &-spacing-div {
         margin-top: 5%;
     }
@@ -6,6 +9,8 @@
     &-dashboard-appBar {
         background-color: rgb(109, 32, 119) !important;
         position: inherit !important;
+        background-image: url('file:///Users/global/Documents/poc/pas-poc-cd2/public/assets/images/EntrustHeader.png');
+        height: 55px;
     }
 
     &-title {
@@ -37,6 +42,7 @@
         width: 100%;
         background-color: white !important;
         padding: 1%;
+        padding-left: 0%;
     }
 
     &-dashboard-body-title {
@@ -117,9 +123,8 @@
     }
 
     &-side-div-content {
-        height: 10%;
+        height: 25px;
         background: white;
         padding-left: 2%;
-        padding-top: 2%;
     }
 }

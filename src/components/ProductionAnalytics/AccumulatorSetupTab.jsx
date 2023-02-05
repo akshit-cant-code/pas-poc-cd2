@@ -10,7 +10,7 @@ const AccumulatorSetupTab = () => {
     return (
         <div className="license-tab-overview">
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Measurement Portal Host
                     </Typography>
@@ -21,7 +21,7 @@ const AccumulatorSetupTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                     Measurement Portal Host
                     </Typography>
@@ -32,7 +32,7 @@ const AccumulatorSetupTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
                         Use TLS
                     </Typography>
@@ -43,9 +43,9 @@ const AccumulatorSetupTab = () => {
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
-                <Grid item xs={2}>
+                <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
-                        Portal retry interval(seconds)
+                        Portal retry interval
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
