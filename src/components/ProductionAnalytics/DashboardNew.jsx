@@ -11,6 +11,7 @@ import DatabaseTab from "./DatabaseTab";
 import AccumulatorSetupTab from "./AccumulatorSetupTab";
 import MachineListTab from "./MachineListTab";
 import ShiftTab from "./ShiftsTab";
+import OperationalComparisonTab from "./OperationalComparisonTab";
 
 const NewDashboard = () => {
 
@@ -75,8 +76,11 @@ const NewDashboard = () => {
                 showTab === 'License' ? <LicenseTab /> : showTab === 'Database' ? <DatabaseTab /> :
                   showTab === 'Machines' ? <MachineListTab />
                     : showTab === 'Shifts' ?
-                    <ShiftTab/> :
-                    <AccumulatorSetupTab />
+                      <ShiftTab /> :
+                      showTab === 'Operational Comparison' ?
+                        <OperationalComparisonTab />
+                        :
+                        <AccumulatorSetupTab />
               }
             </div>
           </Grid>

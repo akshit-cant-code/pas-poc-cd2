@@ -57,14 +57,14 @@
 
     &-dashboard-main-container {
         width: 100%;
-        height: 400px;
+        height: 100vh;
         border: 1px solid #eae5e5;
     }
 
     &-dashboard-main-container-header {
         display: flex;
         background-color: #dde2f6f5;
-        height: 10%;
+        height: 35px;
     }
 
     &-dashboard-header-title {
