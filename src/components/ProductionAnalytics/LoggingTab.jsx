@@ -1,43 +1,44 @@
+
 import React, { Component } from "react";
 import './TabList.scss';
+import './MachineList.scss';
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 
-const LicenseTab = () => {
+const LoggingTab = () => {
     return (
         <div className="license-tab-overview">
+            <div className="machine-tab-container-error-info">
+                <Typography className="machine-tab-title justify-content-flex-start">
+                    Measurement Accumulator service is not running.Start the service to save the configuration.
+                </Typography>
+            </div>
+            <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
                 <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
-                        License Server IP
+                        Portal Logging level
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <input type="text" id="fname" name="fname" className="license-tab-input-field" />
+                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title">
+                        <option value="verbose" className="license-tab-title">Verbose</option>
+                    </select>
                 </Grid>
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Grid container spacing={1}>
                 <Grid item xs={2} className="license-tab-main-title">
                     <Typography className="license-tab-title">
-                        Product Key
+                        Accumulator Logging level
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <input type="text" id="fname" name="fname" className="license-tab-input-field" />
-                </Grid>
-            </Grid>
-            <div className="license-tab-spacing-div"></div>
-            <Grid container spacing={1}>
-                <Grid item xs={2} className="license-tab-main-title">
-                    <Typography className="license-tab-title">
-                        License edition
-                    </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                    <input type="text" id="fname" name="fname" className="license-tab-input-field" />
+                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title">
+                        <option value="verbose" className="license-tab-title">Verbose</option>
+                    </select>
                 </Grid>
             </Grid>
             <div className="license-tab-spacing-div"></div>
@@ -54,23 +55,11 @@ const LicenseTab = () => {
 
                     </Button>
                 </Col>
-                <Col sm={2}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        disabled
-                        className="license-tab-test-license-btn"
-                    >
-                        <Typography className="license-tab-title license-tab-title-btn">
-                            Test License
-                        </Typography>
-                    </Button>
-                </Col>
             </Row>
         </div>
     );
 };
 
-export default LicenseTab;
+export default LoggingTab;
 
 

@@ -13,6 +13,8 @@ import MachineListTab from "./MachineListTab";
 import ShiftTab from "./ShiftsTab";
 import OperationalComparisonTab from "./OperationalComparisonTab";
 import ApiTab from "./ApiTab";
+import LoggingTab from "./LoggingTab";
+import EventsTab from "./EventsTab";
 
 const NewDashboard = () => {
 
@@ -82,7 +84,9 @@ const NewDashboard = () => {
                         <OperationalComparisonTab />
                         :
                         showTab === 'API' ?  <ApiTab/>
-                        :
+                        : 
+                        showTab=== 'Logging' ? <LoggingTab/> :
+                        showTab === 'Events' ? <EventsTab/> :
                         <AccumulatorSetupTab />
               }
             </div>

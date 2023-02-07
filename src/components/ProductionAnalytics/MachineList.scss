@@ -28,6 +28,11 @@
         width: 40px;
     }
 
+    &-head-long-title {
+        width: 96px;
+        padding-right: 0%;
+    }
+    
     &-title {
         font-family: Gotham, sans-serif;
         font-size: 12px !important;
@@ -124,5 +129,16 @@
         background-color: #FCF3E1;
         padding: 15px 30px 15px 15px;
         border-left: 5px solid #fcb322;
+    }
+
+    &-container-error-info{
+        background-color: #FAEAE6;
+        padding: 15px 30px 15px 15px;
+        border-left: 5px solid #ED4E2A;
+        margin-left: 2%;
+    }
+
+    &-new-row-content{
+        height: 35px !important;
     }
 }
