@@ -45,7 +45,6 @@ const LicenseTab = () => {
                 <Col sm={2}>
                     <Button
                         variant="contained"
-                        color="primary"
                         className="license-tab-save-btn"
                     >
                         <Typography className="license-tab-title">
@@ -57,7 +56,6 @@ const LicenseTab = () => {
                 <Col sm={2}>
                     <Button
                         variant="contained"
-                        color="primary"
                         disabled
                         className="license-tab-test-license-btn"
                     >

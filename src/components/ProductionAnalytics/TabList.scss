@@ -21,7 +21,6 @@
         width: 100%;
         border-radius: 5px;
         border: 1px solid #ced4da;
-        height: 2.1875rem;
         margin-left: 5%;
     }
 
@@ -50,12 +49,28 @@
     &-test-license-btn {
         padding-left: 0% !important;
         padding-right: 0% !important;
-        width: 100px !important;
+        width: 90px !important;
         border-radius: 0px !important;
+        background-color: #d8d8d8 !important;
+    }
+    &-save-btn {
+        width:60px !important;
+        border-radius: 0px !important;
+        background-color: #456bd1 !important;
+        color: #fff !important ;
     }
 
-    &-save-btn {
-        width: 75px !important;
-        border-radius: 0px !important;
+    &-row {
+        margin: 0%;
     }
+
+}
+.license-tab-action-buttons > div:last-child {
+    padding-left: 2px;
+}
+.license-tab-test-license-btn {
+    width: 100px !important;
+}
+.select-field{
+    height: 35px;
 }

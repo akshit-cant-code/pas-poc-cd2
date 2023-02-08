@@ -10,21 +10,60 @@ import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import ReactPaginate from "react-paginate";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import LastPageIcon from '@mui/icons-material/LastPage';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import FirstPageIcon from '@mui/icons-material/FirstPage';
 
 
 const EventsTab = () => {
-
-    const tempRows = ['DA-PERF-MXD10', 'AL-DEV2'];
-
     const [offset, setOffset] = useState(0);
     const [data, setData] = useState([]);
     const [perPage] = useState(10);
     const [pageCount, setPageCount] = useState(0);
+    const [totalRecords, setTotalRecords] = useState(0);
+
+    const tempData = [
+        {title:"0025", id: "*"},
+        {title:"10021", id: "*"},
+        {title:"10057", id: "%{REJECTION_CODE}"},
+        {title:"10809", id: "*"},
+        {title:"10850", id: "*"},
+        {title:"10928", id: "*"},
+        {title:"10957", id: "%1"},
+        {title:"11684", id: "*"},
+        {title:"12694", id: "*"},
+        {title:"16681", id: "*"},
+
+        {title:"0025", id: "%{REJECTION_STATUS}"},
+        {title:"10021", id: "*"},
+        {title:"10057", id: "%{REJECTION_CODE}"},
+        {title:"10809", id: "*"},
+        {title:"10850", id: "*"},
+        {title:"10928", id: "*"},
+        {title:"10957", id: "%1"},
+        {title:"11684", id: "*"},
+        {title:"12694", id: "*"},
+        {title:"16681", id: "*"},
+
+        {title:"0025", id: "%{STATUS_CODE}"},
+        {title:"10021", id: "*"},
+        {title:"10057", id: "%{REJECTION_CODE}"},
+        {title:"10809", id: "*"},
+        {title:"10850", id: "*"},
+        {title:"10928", id: "*"},
+        {title:"10957", id: "%1"},
+        {title:"11684", id: "*"},
+        {title:"12694", id: "*"},
+        {title:"16681", id: "*"},
+    ]
 
     const getData = async () => {
-        const res = await axios.get(`https://jsonplaceholder.typicode.com/photos`)
-        const data = res.data;
-        const slice = data.slice(offset, offset + perPage);
+        // const res = await axios.get(`https://jsonplaceholder.typicode.com/photos`)
+        const data = tempData;
+        setTotalRecords(data.length);
+        console.log("!!!!!!!!!!!!!!",offset);
+        const slice =  offset===0 ? data.slice(offset, offset + perPage) : data.slice((offset-1)*perPage, ((offset-1)*perPage)+10);
         let postData = [];
         let postData1 = slice.forEach(item => {
             postData.push({
@@ -36,6 +75,7 @@ const EventsTab = () => {
         setPageCount(Math.ceil(data.length / perPage))
     }
     const handlePageClick = (e) => {
+        console.log("!!!!!!!!!!!!!!",e);
         const selectedPage = e.selected;
         setOffset(selectedPage + 1)
     };
@@ -92,28 +132,59 @@ const EventsTab = () => {
                                     <Button
                                         className="machine-tab-edit-icon"
                                     >
-                                        <EditIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                                        <EditIcon sx={{ color: "#fff", width: "12px", height: "12px" }} className=' col-1' />
                                     </Button></div>
                                 <div className="col-2 machine-tab-table-head-col machine-tab-center-text">
                                     <Button
                                         className="machine-tab-remove-icon"
                                     >
-                                        <ClearIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1' />
+                                        <ClearIcon sx={{ color: "#fff", width: "12px", height: "12px" }} className='col-1' />
                                     </Button></div>
                             </div>
                         )
                     })}
-                <div className="row machine-tab-row machine-tab-row-content machine-tab-new-row-content ">
-                    <ReactPaginate
-                        pageCount={pageCount}
-                        marginPagesDisplayed={1}
-                        pageRangeDisplayed={1}
-                        onPageChange={handlePageClick}
-                        containerClassName={"pagination"}
-                        subContainerClassName={"pages pagination"}
-                        activeClassName={"active"}
-                        prevRel={null}
-                    />
+                <div className="row machine-tab-row machine-tab-row-content machine-tab-row-btn-content ">
+                    <Button
+                        className=" col-1 event-tab event-tab-backward-btn set-margin-right-none event-tab-btn-1"
+                        onClick={()=>handlePageClick({selected:0})}
+                    >
+                        <FirstPageIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1 event-tab-backward-btn-icon' />
+                    </Button>
+                    <Button
+                        className="event-tab event-tab-backward-btn col-1 set-margin-left-none event-tab-btn-2"
+                        onClick={()=>handlePageClick({selected:pageCount-1})}
+                    >
+                        <ArrowBackIosIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className='col-1 event-tab-backward-btn-icon' />
+                    </Button>
+                    <div className="col-8">
+
+                        <ReactPaginate
+                            pageCount={pageCount}
+                            marginPagesDisplayed={1}
+                            pageRangeDisplayed={1}
+                            onPageChange={handlePageClick}
+                            containerClassName={"pagination"}
+                            subContainerClassName={"pages pagination"}
+                            activeClassName={"active"}
+                            prevRel={null}
+                            previousClassName={"disable-next-prev-btn"}
+                            nextClassName={"disable-next-prev-btn"}
+                            breakClassName={"disable-next-prev-btn"}
+                        />
+                    </div>
+
+                    <Button
+                        className="event-tab event-tab-forward-btn col-1 set-margin-right-none event-tab-btn-3"
+                        onClick={()=>handlePageClick({selected:offset})}
+                    >
+                        <ArrowForwardIosIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className='col-1 event-tab-forward-btn-icon' />
+                    </Button>
+                    <Button
+                        className="event-tab event-tab-forward-btn col-1 set-margin-left-none event-tab-btn-4"
+                        onClick={()=>handlePageClick({selected:pageCount-1})}
+                    >
+                        <LastPageIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1 event-tab-forward-btn-icon' />
+                    </Button>
 
                 </div>
             </div>

@@ -51,19 +51,19 @@ const MachineListTab = () => {
                         <Button
                             className="machine-tab-edit-icon"
                         >
-                            <EditIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                            <EditIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                         </Button></div>
                     <div className="col-2 machine-tab-table-head-col machine-tab-center-text">
                         <Button
                             className="machine-tab-revoke-icon"
                         >
-                            <DoDisturbIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                            <DoDisturbIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                         </Button></div>
                     <div className="col-2 machine-tab-table-head-col machine-tab-center-text">
                         <Button
                             className="machine-tab-remove-icon"
                         >
-                            <ClearIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1' />
+                            <ClearIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className='col-1' />
                         </Button></div>
                 </div>
                  )
@@ -72,19 +72,19 @@ const MachineListTab = () => {
             <div className="license-tab-spacing-div"></div>
             <div className="machine-tab-post-container">
                 <div className="row machine-tab-row">
-                    <div className="col-3">
+                    <div className="col-3 align-items-center d-flex">
                         <Typography className="d-flex justify-content-center machine-tab-title">
                             Machine licenses
                         </Typography>
                     </div>
-                    <div className="col-4 row machine-tab-row">
+                    <div className="col-4 row machine-tab-row align-items-center">
                         <Typography className="machine-tab-title col-3">
                             Required
                         </Typography>
                         <input type="number" id="fname" name="fname" className="license-tab-input-field col machine-tab-required-field"  value={2}/>
                     </div>
                     <div className="col-1"></div>
-                    <div className="col-4 row machine-tab-row">
+                    <div className="col-4 row machine-tab-row align-items-center">
                         <Typography className="machine-tab-title col-3">
                             Available
                         </Typography>

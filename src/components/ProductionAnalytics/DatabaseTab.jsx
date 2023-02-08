@@ -53,7 +53,7 @@ const DatabaseTab = () => {
                 </Grid>
             </Grid>
             <div className="license-tab-spacing-div"></div>
-            <Row className="license-tab-action-buttons">
+            <Row className="license-tab-action-buttons database-tab-action-btns">
                 <Col sm={2}>
                     <Button
                         variant="contained"

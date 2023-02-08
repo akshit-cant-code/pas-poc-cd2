@@ -23,7 +23,7 @@ const LoggingTab = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title">
+                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title select-field">
                         <option value="verbose" className="license-tab-title">Verbose</option>
                     </select>
                 </Grid>
@@ -36,14 +36,14 @@ const LoggingTab = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title">
+                    <select name="cars" id="cars" className="license-tab-input-field license-tab-title select-field">
                         <option value="verbose" className="license-tab-title">Verbose</option>
                     </select>
                 </Grid>
             </Grid>
             <div className="license-tab-spacing-div"></div>
             <Row className="license-tab-action-buttons">
-                <Col sm={2}>
+                <Col sm={1}>
                     <Button
                         variant="contained"
                         color="primary"

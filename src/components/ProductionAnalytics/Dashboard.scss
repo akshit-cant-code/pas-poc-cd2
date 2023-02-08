@@ -1,6 +1,6 @@
 .production-analytics {
-    body {
-        font: Gotham, sans-serif !important;
+    > body {
+        font: Gotham, !important;
     }
     &-spacing-div {
         margin-top: 5%;
@@ -80,6 +80,7 @@
         align-items: center;
         display: contents;
         white-space: nowrap;
+        font-weight: 600 !important;
     }
 
     &-dashboard-vertical-segment {

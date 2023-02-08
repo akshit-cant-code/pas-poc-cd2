@@ -103,7 +103,7 @@ const OperationalComparisonTab = () => {
                                 <Button
                                     className="machine-tab-edit-icon"
                                 >
-                                    <EditIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                                    <EditIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                                 </Button>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ const OperationalComparisonTab = () => {
                                 <Button
                                     className="machine-tab-edit-icon"
                                 >
-                                    <EditIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                                    <EditIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                                 </Button>
                             </div>
                         </div>

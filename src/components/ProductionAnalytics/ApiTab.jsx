@@ -124,14 +124,14 @@ const ApiTab = () => {
                             <Button
                                 className="machine-tab-edit-icon"
                             >
-                                <EditIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                                <EditIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                             </Button>
                         </div>
                         <div className="col-2 machine-tab-table-head-col machine-tab-center-text">
                             <Button
                                 className="machine-tab-remove-icon"
                             >
-                                <ClearIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className=' col-1' />
+                                <ClearIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className=' col-1' />
                             </Button>
                         </div>
                     </div>
