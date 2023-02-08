@@ -1,7 +1,4 @@
 .production-analytics {
-    > body {
-        font: Gotham, !important;
-    }
     &-spacing-div {
         margin-top: 5%;
     }
@@ -16,6 +13,7 @@
     &-title {
         font-size: 18px !important;
         font-weight: bold !important;
+        font-family: Gotham, !important;
     }
 
     &-vertical-segment {
@@ -29,6 +27,7 @@
         font-size: 12px !important;
         font-weight: bold !important;
         padding-left: 2%;
+        font-family: Gotham, !important;
     }
 
     &-info-icon {
@@ -48,6 +47,7 @@
     &-dashboard-body-title {
         font-size: 12px !important;
         padding-left: 1%;
+        font-family: Gotham, !important;
     }
 
     &-dashboard-body-first {
@@ -81,6 +81,7 @@
         display: contents;
         white-space: nowrap;
         font-weight: 600 !important;
+        font-family: Gotham, !important;
     }
 
     &-dashboard-vertical-segment {

@@ -137,13 +137,10 @@ const ApiTab = () => {
                     </div>
                 </div>
                 <div className="license-tab-spacing-div"></div>
-                <Row className="license-tab-action-buttons d-flex justify-content-flex-end w-100">
-                    <Col sm={2}>
+                <Row className="license-tab-action-buttons d-flex justify-content-flex-end w-100 api-tab-btns">
+                    <Col sm={1}>
                         <Button
-                            variant="contained"
-                            color="primary"
-                            disabled
-                            className="license-tab-test-license-btn"
+                            className="license-tab-test-license-btn w-auto api-tab-add-shift-btn"
                         >
                             <Typography className="license-tab-title license-tab-title-btn">
                                 Add

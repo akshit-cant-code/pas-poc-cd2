@@ -37,6 +37,7 @@
         font-size: 16px !important;
         font-weight: bold !important;
         padding-bottom: 1%;
+        font-family: Gotham, !important;
     }
 
     &-content-overview {
@@ -46,7 +47,7 @@
     &-input-field {
         border-radius: 5px;
         border: 1px solid #ced4da;
-        height: 2rem;
+        height: 35px;
         margin-right: 20px;
     }
 
@@ -86,4 +87,13 @@
     &-token-container{
         width: 120%;
     }
+
+    &-add-shift-btn{
+        width: auto !important;
+    }
+     &-btn {
+        > div:first-child{
+            padding-left: 10px;
+        }
+     }
 }

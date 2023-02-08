@@ -91,13 +91,13 @@ const OperationalComparisonTab = () => {
                         </div>
                         <div className="row machine-tab-row machine-tab-row-content">
                             <div className="col-3 machine-tab-table-head-col machine-tab-flex-start-text">
-                                <input type="text" id="fname" name="fname" className="license-tab-input-field" />
+                                <input type="text" id="fname" name="fname" className="license-tab-input-field h-auto" />
                             </div>
                             <div className="col-3 machine-tab-table-head-col machine-tab-flex-start-text">
-                                <input type="text" id="fname" name="fname" className="license-tab-input-field" />
+                                <input type="text" id="fname" name="fname" className="license-tab-input-field h-auto" />
                             </div>
                             <div className="col-3 machine-tab-table-head-col machine-tab-flex-start-text">
-                                <input type="checkbox" id="useTLS" name="useTLS" value="useTLS" className="license-tab-checkbox-field" />
+                                <input type="checkbox" id="useTLS" name="useTLS" value="useTLS" className="license-tab-checkbox-field h-auto" />
                             </div>
                             <div className="col-3 machine-tab-table-head-col machine-tab-center-text">
                                 <Button
