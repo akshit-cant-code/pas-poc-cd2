@@ -136,10 +136,7 @@ const OperationalComparisonTab = () => {
                     <Row className="license-tab-action-buttons d-flex justify-content-flex-end w-100 machine-tab-action-buttons">
                         <Col sm={2}>
                             <Button
-                                variant="contained"
-                                color="primary"
-                                disabled
-                                className="license-tab-test-license-btn"
+                                className="license-tab-test-license-btn op-btn"
                             >
                                 <Typography className="license-tab-title license-tab-title-btn">
                                     Add

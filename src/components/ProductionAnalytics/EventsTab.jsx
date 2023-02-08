@@ -90,7 +90,7 @@ const EventsTab = () => {
                 <div className="row machine-tab-table-head">
                     <div className="col-4 machine-tab-table-head-col machine-tab-flex-start-text">
                         <div className="row machine-tab-row">
-                            <Typography className="machine-tab-title machine-tab-head-long-title col-2">
+                            <Typography className="machine-tab-title machine-tab-head-long-title col-2 machine-tab-head-event-title-1">
                                 Message Code
                             </Typography>
                             <SortIcon className='machine-tab-sort-icon col-1' />
@@ -98,7 +98,7 @@ const EventsTab = () => {
                     </div>
                     <div className="col-4 machine-tab-table-head-col machine-tab-flex-start-text">
                         <div className="row machine-tab-row">
-                            <Typography className="machine-tab-title machine-tab-head-title col-2">
+                            <Typography className="machine-tab-title machine-tab-head-event-title-2 col-2">
                                 Params
                             </Typography>
                             <SortIcon className='machine-tab-sort-icon col-1' />

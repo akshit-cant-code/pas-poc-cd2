@@ -98,7 +98,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        border-right: 1px solid #bab6b6;
+        border-right: 1px solid #ddd;
         padding: 0% !important;
         &:hover{
             background-color: #ddd;
@@ -108,7 +108,7 @@
 
     &-grid-item-selected {
         background-color: #ffff;
-        border-bottom: 1px solid #bab6b6;
+        border-bottom: 1px solid #ddd;
     }
 
 

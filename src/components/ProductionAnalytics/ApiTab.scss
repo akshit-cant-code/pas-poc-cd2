@@ -90,10 +90,15 @@
 
     &-add-shift-btn{
         width: auto !important;
+        margin-left: 8px !important;
     }
      &-btn {
         > div:first-child{
             padding-left: 10px;
         }
      }
+}
+.op-btn{
+    width: auto !important;
+    margin-left: 32px !important;
 }
