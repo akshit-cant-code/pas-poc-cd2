@@ -24,46 +24,44 @@ const EventsTab = () => {
     const [totalRecords, setTotalRecords] = useState(0);
 
     const tempData = [
-        {title:"0025", id: "*"},
-        {title:"10021", id: "*"},
-        {title:"10057", id: "%{REJECTION_CODE}"},
-        {title:"10809", id: "*"},
-        {title:"10850", id: "*"},
-        {title:"10928", id: "*"},
-        {title:"10957", id: "%1"},
-        {title:"11684", id: "*"},
-        {title:"12694", id: "*"},
-        {title:"16681", id: "*"},
+        { title: "0025", id: "*" },
+        { title: "10021", id: "*" },
+        { title: "10057", id: "%{REJECTION_CODE}" },
+        { title: "10809", id: "*" },
+        { title: "10850", id: "*" },
+        { title: "10928", id: "*" },
+        { title: "10957", id: "%1" },
+        { title: "11684", id: "*" },
+        { title: "12694", id: "*" },
+        { title: "16681", id: "first" },
 
-        {title:"0025", id: "%{REJECTION_STATUS}"},
-        {title:"10021", id: "*"},
-        {title:"10057", id: "%{REJECTION_CODE}"},
-        {title:"10809", id: "*"},
-        {title:"10850", id: "*"},
-        {title:"10928", id: "*"},
-        {title:"10957", id: "%1"},
-        {title:"11684", id: "*"},
-        {title:"12694", id: "*"},
-        {title:"16681", id: "*"},
+        { title: "0025", id: "%{REJECTION_STATUS}" },
+        { title: "10021", id: "*" },
+        { title: "10057", id: "%{REJECTION_CODE}" },
+        { title: "10809", id: "*" },
+        { title: "10850", id: "*" },
+        { title: "10928", id: "*" },
+        { title: "10957", id: "%1" },
+        { title: "11684", id: "*" },
+        { title: "12694", id: "*" },
+        { title: "16681", id: "second" },
 
-        {title:"0025", id: "%{STATUS_CODE}"},
-        {title:"10021", id: "*"},
-        {title:"10057", id: "%{REJECTION_CODE}"},
-        {title:"10809", id: "*"},
-        {title:"10850", id: "*"},
-        {title:"10928", id: "*"},
-        {title:"10957", id: "%1"},
-        {title:"11684", id: "*"},
-        {title:"12694", id: "*"},
-        {title:"16681", id: "*"},
+        { title: "0025", id: "%{STATUS_CODE}" },
+        { title: "10021", id: "*" },
+        { title: "10057", id: "%{REJECTION_CODE}" },
+        { title: "10809", id: "*" },
+        { title: "10850", id: "*" },
+        { title: "10928", id: "*" },
+        { title: "10957", id: "%1" },
+        { title: "11684", id: "*" },
+        { title: "12694", id: "*" },
+        { title: "16681", id: "last" },
     ]
 
     const getData = async () => {
-        // const res = await axios.get(`https://jsonplaceholder.typicode.com/photos`)
         const data = tempData;
         setTotalRecords(data.length);
-        console.log("!!!!!!!!!!!!!!",offset);
-        const slice =  offset===0 ? data.slice(offset, offset + perPage) : data.slice((offset-1)*perPage, ((offset-1)*perPage)+10);
+        const slice = offset === 0 ? data.slice(offset, offset + perPage) : data.slice((offset - 1) * perPage, ((offset - 1) * perPage) + 10);
         let postData = [];
         let postData1 = slice.forEach(item => {
             postData.push({
@@ -75,9 +73,18 @@ const EventsTab = () => {
         setPageCount(Math.ceil(data.length / perPage))
     }
     const handlePageClick = (e) => {
-        console.log("!!!!!!!!!!!!!!",e);
         const selectedPage = e.selected;
         setOffset(selectedPage + 1)
+    };
+
+    const handleNextPageClick = (e) => {
+        const selectedPage = e.selected;
+        setOffset(selectedPage + 1)
+    };
+
+    const handlePreviousPageClick = (e) => {
+        const selectedPage = e.selected;
+        setOffset(selectedPage - 1);
     };
 
     useEffect(() => {
@@ -145,19 +152,20 @@ const EventsTab = () => {
                     })}
                 <div className="row machine-tab-row machine-tab-row-content machine-tab-row-btn-content ">
                     <Button
-                        className=" col-1 event-tab event-tab-backward-btn set-margin-right-none event-tab-btn-1"
-                        onClick={()=>handlePageClick({selected:0})}
+                        className={`col-1 event-tab event-tab-backward-btn set-margin-right-none event-tab-btn-1 ${offset === 1 ? "event-tab-disable-btn" : ""}`}
+                        onClick={() => handleNextPageClick({ selected: 0 })}
+                        disabled={offset === 0}
                     >
-                        <FirstPageIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1 event-tab-backward-btn-icon' />
+                        <FirstPageIcon sx={{ color: "#6d787d", width: "13px", height: "13px" }} className='col-1 event-tab-backward-btn-icon' />
                     </Button>
                     <Button
-                        className="event-tab event-tab-backward-btn col-1 set-margin-left-none event-tab-btn-2"
-                        onClick={()=>handlePageClick({selected:pageCount-1})}
+                        className={`event-tab event-tab-backward-btn col-1 set-margin-left-none event-tab-btn-2 ${offset === 1 ? "event-tab-disable-btn" : ""}`}
+                        onClick={() => handlePreviousPageClick({ selected: offset })}
+                        disabled={offset === 0}
                     >
-                        <ArrowBackIosIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className='col-1 event-tab-backward-btn-icon' />
+                        <ArrowBackIosIcon sx={{ color: "#6d787d", width: "11px", height: "11px" }} className='col-1 event-tab-backward-btn-icon' />
                     </Button>
                     <div className="col-8">
-
                         <ReactPaginate
                             pageCount={pageCount}
                             marginPagesDisplayed={1}
@@ -174,14 +182,16 @@ const EventsTab = () => {
                     </div>
 
                     <Button
-                        className="event-tab event-tab-forward-btn col-1 set-margin-right-none event-tab-btn-3"
-                        onClick={()=>handlePageClick({selected:offset})}
+                        className={`event-tab event-tab-forward-btn col-1 set-margin-right-none event-tab-btn-3 ${offset === pageCount ? "event-tab-disable-btn" : ""}`}
+                        onClick={() => handleNextPageClick({ selected: offset })}
+                        disabled={offset === pageCount}
                     >
                         <ArrowForwardIosIcon sx={{ color: "#fff", width: "11px", height: "11px" }} className='col-1 event-tab-forward-btn-icon' />
                     </Button>
                     <Button
-                        className="event-tab event-tab-forward-btn col-1 set-margin-left-none event-tab-btn-4"
-                        onClick={()=>handlePageClick({selected:pageCount-1})}
+                        className={`event-tab event-tab-forward-btn col-1 set-margin-left-none event-tab-btn-4 ${offset === pageCount ? "event-tab-disable-btn" : ""}`}
+                        onClick={() => handlePageClick({ selected: pageCount - 1 })}
+                        disabled={offset === pageCount}
                     >
                         <LastPageIcon sx={{ color: "#fff", width: "13px", height: "13px" }} className='col-1 event-tab-forward-btn-icon' />
                     </Button>

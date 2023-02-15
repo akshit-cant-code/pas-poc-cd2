@@ -23,12 +23,12 @@ const ApiTab = () => {
         <div className="api-tab-overview">
             <div className="api-tab-header row">
                 <div onClick={()=>showCurrentTab('Data Stream')} className= {showTab==='Data Stream' ? "col-2  api-tab-header-content api-tab-header-content-selected" : "col-2  api-tab-header-content"}>
-                <Typography className="machine-tab-title">
+                <Typography className="machine-tab-title" style={{ fontWeight: "600"}}>
                     Data Stream
                 </Typography>
                 </div>
                 <div onClick={()=>showCurrentTab('Perso Machine')} className= {showTab==='Perso Machine' ? "col-2  api-tab-header-content api-tab-header-content-selected" : "col-2  api-tab-header-content"}>
-                <Typography className="machine-tab-title">
+                <Typography className="machine-tab-title" style={{ fontWeight: "600"}}>
                     Perso Machine
                 </Typography>
                 </div>

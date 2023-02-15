@@ -6,7 +6,7 @@
 
 // stylelint-disable font-family-name-quotes
 @font-face {
-  font-family: "Open Sans";
+  font-family: "Gotham,";
   font-style: normal;
   font-weight: 400;
   src: url("#{$font-path}/open-sans-regular.eot");
@@ -26,7 +26,7 @@
 
 /* open-sans-600 (Medium) - latin */
 @font-face {
-  font-family: "Open Sans";
+  font-family: "Gotham,";
   font-style: normal;
   font-weight: 600;
   src: url("#{$font-path}/open-sans-600.eot");
@@ -45,7 +45,7 @@
 
 /* open-sans-800 (Bold) - latin */
 @font-face {
-  font-family: "Open Sans";
+  font-family: "Gotham,";
   font-style: normal;
   font-weight: 800;
   src: url("#{$font-path}/open-sans-800.eot");
