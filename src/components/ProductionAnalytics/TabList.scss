@@ -24,6 +24,27 @@
         border: 1px solid #ced4da;
         margin-left: 5%;
         height: 35px;
+        font-size: 12px;
+        padding: 2%;
+        color: #495057;
+    }
+
+    &-input-field-error {
+        border: 1px solid red !important;
+    }
+
+    &-input-field-read-only {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+
+    &-input-field-error-msg {
+        font-size: 12px !important;
+        padding-left: 1%;
+        display: flex;
+        justify-content: flex-start;
+        color: red;
+        margin-left: 5%;
     }
 
     &-spacing-div {
@@ -55,11 +76,12 @@
         border-radius: 0px !important;
         background-color: #d8d8d8 !important;
     }
+
     &-save-btn {
-        width:60px !important;
+        width: 60px !important;
         border-radius: 0px !important;
         background-color: #456bd1 !important;
-        color: #fff !important ;
+        color: #fff !important;
     }
 
     &-row {
@@ -67,13 +89,16 @@
     }
 
 }
-.license-tab-action-buttons > div:last-child {
+
+.license-tab-action-buttons>div:last-child {
     padding-left: 2px;
 }
+
 .license-tab-test-license-btn {
     width: 100px !important;
 }
-.select-field{
+
+.select-field {
     height: 35px;
     margin-left: 6%;
 }
