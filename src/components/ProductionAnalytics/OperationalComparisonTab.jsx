@@ -7,6 +7,7 @@ import SortIcon from '@mui/icons-material/Sort';
 import EditIcon from '@mui/icons-material/Edit';
 import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
+import ModulesTab from "./ModulesTab";
 
 const OperationalComparisonTab = () => {
 
@@ -21,12 +22,12 @@ const OperationalComparisonTab = () => {
         <div className="api-tab-overview">
             <div className="api-tab-header row">
                 <div onClick={() => showCurrentTab('FIR Fields')} className={showTab === 'FIR Fields' ? "col-2  api-tab-header-content api-tab-header-content-selected" : "col-2  api-tab-header-content"}>
-                    <Typography className="machine-tab-title" style={{ fontWeight: "600"}}>
+                    <Typography className="machine-tab-title" style={{ fontWeight: "600" }}>
                         FIR Fields
                     </Typography>
                 </div>
                 <div onClick={() => showCurrentTab('Modules')} className={showTab === 'Modules' ? "col-2  api-tab-header-content api-tab-header-content-selected" : "col-2  api-tab-header-content"}>
-                    <Typography className="machine-tab-title" style={{ fontWeight: "600"}}>
+                    <Typography className="machine-tab-title" style={{ fontWeight: "600" }}>
                         Modules
                     </Typography>
                 </div>
@@ -145,6 +146,10 @@ const OperationalComparisonTab = () => {
                         </Col>
                     </Row>
                 </div>
+            }
+            {
+                showTab === 'Modules' &&
+                <ModulesTab />
             }
         </div>
     );

@@ -9,6 +9,7 @@ import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 import ClearIcon from '@mui/icons-material/Clear';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import DataStreamTab from "./DataStreamTab";
 
 const ApiTab = () => {
 
@@ -149,6 +150,10 @@ const ApiTab = () => {
                     </Col>
                 </Row>
             </div>
+            }
+            {
+                showTab === 'Data Stream' &&
+                <DataStreamTab/>
             }
         </div>
     );
