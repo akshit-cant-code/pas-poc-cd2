@@ -5,6 +5,8 @@ import { Grid } from "@mui/material";
 import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LicenseTab = () => {
     const [haslicenseIPError, setHasLicenseIPError] = useState(false);
@@ -13,6 +15,27 @@ const LicenseTab = () => {
     const [productKey, setProductKey] = useState('');
     const [errorMsgForIP, setErrorMsgForIP] = useState('');
     const [errorMsgForKey, setErrorMsgForKey] = useState('');
+
+    const addLicense = () => {
+        var requestBody = {
+            serverIP: serverIP,
+            productKey: productKey,
+            licenseEdition: 'License Edition'
+
+        };
+        fetch("https://localhost:58298/api/license", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(requestBody),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                toast("Data Added");
+            });
+    }
 
     const handleErrorForIP = () => {
         setErrorMsgForIP('');
@@ -108,6 +131,7 @@ const LicenseTab = () => {
                     <Button
                         variant="contained"
                         className="license-tab-save-btn"
+                        onClick={() => addLicense()}
                     >
                         <Typography className="license-tab-title">
                             Save
@@ -127,10 +151,9 @@ const LicenseTab = () => {
                     </Button>
                 </Col>
             </Row>
+            <ToastContainer />
         </div>
     );
 };
 
 export default LicenseTab;
-
-
