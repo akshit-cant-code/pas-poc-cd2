@@ -17,6 +17,7 @@ const LicenseTab = () => {
     const [errorMsgForKey, setErrorMsgForKey] = useState('');
 
     const addLicense = () => {
+        toast.info("Data Successfully Added");
         var requestBody = {
             serverIP: serverIP,
             productKey: productKey,
@@ -33,7 +34,6 @@ const LicenseTab = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                toast("Data Added");
             });
     }
 
@@ -130,8 +130,9 @@ const LicenseTab = () => {
                 <Col sm={2}>
                     <Button
                         variant="contained"
-                        className="license-tab-save-btn"
+                        className={`license-tab-save-btn ${hasProductKeyError || haslicenseIPError || serverIP.length === 0 || productKey.length === 0 ? 'license-tab-save-btn-disabled' : ''}`}
                         onClick={() => addLicense()}
+                        disabled={hasProductKeyError || haslicenseIPError || serverIP.length === 0 || productKey.length === 0}
                     >
                         <Typography className="license-tab-title">
                             Save
@@ -151,7 +152,11 @@ const LicenseTab = () => {
                     </Button>
                 </Col>
             </Row>
-            <ToastContainer />
+            <ToastContainer
+                autoClose={false}
+                hideProgressBar={true}
+                className='toast-message'
+            />
         </div>
     );
 };
