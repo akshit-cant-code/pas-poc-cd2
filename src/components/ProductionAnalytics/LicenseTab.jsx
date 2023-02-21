@@ -17,7 +17,6 @@ const LicenseTab = () => {
     const [errorMsgForKey, setErrorMsgForKey] = useState('');
 
     const addLicense = () => {
-        toast.info("Data Successfully Added");
         var requestBody = {
             serverIP: serverIP,
             productKey: productKey,
@@ -34,6 +33,7 @@ const LicenseTab = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                toast.info("Data Successfully Added");
             });
     }
 
