@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import './TabList.scss';
+import './ToastContainer.scss';
 import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { Button } from '@material-ui/core';
@@ -7,6 +8,7 @@ import { Row, Col } from 'react-bootstrap';
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
 
 const LicenseTab = () => {
     const [haslicenseIPError, setHasLicenseIPError] = useState(false);
@@ -34,6 +36,23 @@ const LicenseTab = () => {
             .then((res) => res.json())
             .then((data) => {
                 toast.info("Data Successfully Added");
+            });
+    }
+
+    const getLicense = () => {
+        fetch("https://localhost:58298/api/license", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "GET",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data[data.length - 1] !== undefined) {
+                    setServerIP(data[data.length - 1].serverIP);
+                    setProductKey(data[data.length - 1].productKey);
+                }
             });
     }
 
@@ -88,6 +107,11 @@ const LicenseTab = () => {
         const regex = new RegExp(`^[{]?[0-9a-zA-Z]{4}-([0-9a-zA-Z]{4}-){2}[0-9a-zA-Z]{4}[}]?$`);
         return regex.test(key);
     }
+
+
+    useEffect(() => {
+          getLicense();
+      }, []);
 
     return (
         <div className="license-tab-overview">
@@ -156,6 +180,8 @@ const LicenseTab = () => {
                 autoClose={false}
                 hideProgressBar={true}
                 className='toast-message'
+                bodyClassName='toast-container-title'
+                limit={1}
             />
         </div>
     );

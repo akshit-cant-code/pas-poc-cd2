@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import { Grid } from "@mui/material";
 import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
+import { useEffect } from "react";
 
 const DatabaseTab = () => {
 
@@ -17,6 +18,46 @@ const DatabaseTab = () => {
     const [errorMsgForHost, setErrorMsgForHost] = useState('');
     const [errorMsgForPort, setErrorMsgForPort] = useState('');
     const [errorMsgForToken, setErrorMsgForToken] = useState('');
+
+    const addServerInfo = () => {
+        var requestBody = {
+            serverHost : serverHost,
+            serverPort : serverPort,
+            useTLS : false,
+            token : token
+
+        };
+        fetch("https://localhost:58298/api/database", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "POST",
+            body: JSON.stringify(requestBody),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                toast.info("Data Successfully Added");
+            });
+    }
+
+    const getInfo = () => {
+        fetch("https://localhost:58298/api/databases", {
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "GET",
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data[data.length - 1] !== undefined) {
+                    setServerHost(data[data.length - 1].serverHost);
+                    setServerPort(data[data.length - 1].serverPort);
+                    setToken(data[data.length - 1].token)
+                }
+            });
+    }
 
     const handleFieldsValue = () => {
         setServerHost(document.getElementById('serverHost').value);
@@ -81,6 +122,11 @@ const DatabaseTab = () => {
         return regex.test(port);
     }
 
+    useEffect(() => {
+        getInfo();
+    }, []);
+
+
     return (
         <div className="license-tab-overview">
             <Grid container spacing={1}>
@@ -136,6 +182,8 @@ const DatabaseTab = () => {
                         variant="contained"
                         color="primary"
                         className="license-tab-save-btn"
+                        onClick={() => addServerInfo()}
+                        disabled={hasServerHostError || hasServerPortError || hasTokenError || serverHost.length === 0 || token.length === 0}
                     >
                         <Typography className="license-tab-title">
                             Save
