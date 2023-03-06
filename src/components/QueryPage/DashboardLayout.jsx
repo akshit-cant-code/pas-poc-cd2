@@ -80,7 +80,6 @@ import NavBar from './NavBar';
               </Card>
           </Grid>
           <Grid item xs={12} sm={8} md={8}>
-            <NavBar></NavBar>
           <Card sx={{  background:"rgb(24, 22, 22)"}}>           
                {<Form parentCallback = {this.handleCallback}></Form> }
               </Card>

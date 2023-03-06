@@ -210,7 +210,6 @@ class DynamicGraphQuery extends Component {
               </Card>
             </Grid>
             <Grid item xs={12} sm={8} md={8}>
-              <NavBar></NavBar>
               <Card sx={{ background: "#181b1f" }}>
                 {<Form parentCallback={this.handleCallback}></Form>}
               </Card>

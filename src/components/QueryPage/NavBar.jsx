@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MuiThemeProvider from "@material-ui/styles/ThemeProvider";
 import { Tabs, Tab } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -56,9 +55,7 @@ const TabsContainer = () => {
 
 const NavBar = () => {
   return (
-    <MuiThemeProvider>
       <TabsContainer />
-    </MuiThemeProvider>
   );
 };
 
