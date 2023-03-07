@@ -61,8 +61,8 @@ const NewDashboard = () => {
                   {
                     headerMenu.map((item, index) => {
                       return (
-                        <Grid item xs={(index === 4 || index === 6) ? 2 : 1} className={showTab === item ? 'production-analytics-grid-item production-analytics-grid-item-selected' : 'production-analytics-grid-item'}>
-                          <div onClick={() => showCurrentTab(item)} className='production-analytics-onclick-handler'>
+                        <Grid item xs={(index === 4 || index === 6) ? 2 : 1} className={showTab === item ? 'production-analytics-grid-item production-analytics-grid-item-selected' : 'production-analytics-grid-item'} onClick={() => showCurrentTab(item)}>
+                          <div className='production-analytics-onclick-handler'>
                             <span className="production-analytics-dashboard-header-title">
                               {item}
                             </span>
