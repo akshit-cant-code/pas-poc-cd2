@@ -25,7 +25,7 @@ const DatabaseTab = () => {
         var requestBody = {
             serverHost: serverHost,
             serverPort: serverPort,
-            useTLS: false,
+            useTLS: document.querySelector('#useTLS').checked,
             token: token
 
         };
@@ -170,7 +170,7 @@ const DatabaseTab = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <input type="checkbox" id="useTLS" name="useTLS" value="useTLS" className="license-tab-checkbox-field" />
+                    <input type="checkbox" id="useTLS" name="useTLS"  className="license-tab-checkbox-field" />
                 </Grid>
             </Grid>
             <div className="license-tab-spacing-div"></div>
