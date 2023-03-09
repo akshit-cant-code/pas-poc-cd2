@@ -39,8 +39,8 @@ const DatabaseTab = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                clearFields();
                 toast.info("Data Successfully Added");
+                clearFields();
             });
     }
 
@@ -63,9 +63,9 @@ const DatabaseTab = () => {
     }
 
     const clearFields = () => {
-        setServerHost('');
-        setServerPort('');
-        setToken(false);
+        document.getElementById('serverHost').value='';
+        document.getElementById('serverPort').value = '';
+        document.getElementById('token').value = '';
     }
 
 

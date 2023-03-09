@@ -58,8 +58,8 @@ const LicenseTab = () => {
     }
 
     const clearFields = () => {
-        setServerIP('');
-        setProductKey('');
+        document.getElementById('serverIP').value = '';
+        document.getElementById('productKey').value = '';
     }
 
     const handleErrorForIP = () => {
