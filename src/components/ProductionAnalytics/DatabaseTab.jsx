@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import './TabList.scss';
 import Typography from "@mui/material/Typography";
@@ -6,6 +5,9 @@ import { Grid } from "@mui/material";
 import { Button } from '@material-ui/core';
 import { Row, Col } from 'react-bootstrap';
 import { useEffect } from "react";
+import './ToastContainer.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DatabaseTab = () => {
 
@@ -21,10 +23,10 @@ const DatabaseTab = () => {
 
     const addServerInfo = () => {
         var requestBody = {
-            serverHost : serverHost,
-            serverPort : serverPort,
-            useTLS : false,
-            token : token
+            serverHost: serverHost,
+            serverPort: serverPort,
+            useTLS: false,
+            token: token
 
         };
         fetch("https://localhost:58298/api/database", {
@@ -37,6 +39,7 @@ const DatabaseTab = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                clearFields();
                 toast.info("Data Successfully Added");
             });
     }
@@ -54,10 +57,17 @@ const DatabaseTab = () => {
                 if (data[data.length - 1] !== undefined) {
                     setServerHost(data[data.length - 1].serverHost);
                     setServerPort(data[data.length - 1].serverPort);
-                    setToken(data[data.length - 1].token)
+                    setToken(data[data.length - 1].token);
                 }
             });
     }
+
+    const clearFields = () => {
+        setServerHost('');
+        setServerPort('');
+        setToken(false);
+    }
+
 
     const handleFieldsValue = () => {
         setServerHost(document.getElementById('serverHost').value);
@@ -204,6 +214,13 @@ const DatabaseTab = () => {
                     </Button>
                 </Col>
             </Row>
+            <ToastContainer
+                autoClose={false}
+                hideProgressBar={true}
+                className='toast-message'
+                bodyClassName='toast-container-title'
+                limit={1}
+            />
         </div>
     );
 };

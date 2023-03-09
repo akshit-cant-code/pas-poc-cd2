@@ -35,6 +35,7 @@ const LicenseTab = () => {
         })
             .then((res) => res.json())
             .then((data) => {
+                clearFields();
                 toast.info("Data Successfully Added");
             });
     }
@@ -54,6 +55,11 @@ const LicenseTab = () => {
                     setProductKey(data[data.length - 1].productKey);
                 }
             });
+    }
+
+    const clearFields = () => {
+        setServerIP('');
+        setProductKey('');
     }
 
     const handleErrorForIP = () => {
