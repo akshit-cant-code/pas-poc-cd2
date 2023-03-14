@@ -66,7 +66,6 @@ const NewDashboard = () => {
                             <span className="production-analytics-dashboard-header-title">
                               {item}
                             </span>
-                            <span className="production-analytics-dashboard-vertical-segment"></span>
                           </div>
                         </Grid>
                       )
